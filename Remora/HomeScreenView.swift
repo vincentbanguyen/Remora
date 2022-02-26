@@ -40,7 +40,7 @@ struct HomeScreenView: View {
             .padding(.top, 30)
             
             // Tank View
-            FishTankView()
+            FishTankARView()
                 .frame(width: 400, height: 400)
         }
         .transition(.backslide)

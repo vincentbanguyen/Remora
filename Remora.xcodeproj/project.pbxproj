@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		CA39517927C9EF9C008EFD4B /* Tank.scn in Resources */ = {isa = PBXBuildFile; fileRef = CA39517827C9EF9C008EFD4B /* Tank.scn */; };
 		CAF3ED8327C9CA010078BDFE /* MainScene.scn in Resources */ = {isa = PBXBuildFile; fileRef = CAF3ED8227C9CA010078BDFE /* MainScene.scn */; };
-		CAF3ED8527C9CA450078BDFE /* Fish.scn in Resources */ = {isa = PBXBuildFile; fileRef = CAF3ED8427C9CA450078BDFE /* Fish.scn */; };
 		E19DA00227C9B2A000084D04 /* RemoraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DA00127C9B2A000084D04 /* RemoraApp.swift */; };
 		E19DA00427C9B2A000084D04 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DA00327C9B2A000084D04 /* ContentView.swift */; };
 		E19DA00627C9B2A200084D04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E19DA00527C9B2A200084D04 /* Assets.xcassets */; };
@@ -21,15 +20,12 @@
 		E19DA02127C9ED8C00084D04 /* SCNBezier in Frameworks */ = {isa = PBXBuildFile; productRef = E19DA02027C9ED8C00084D04 /* SCNBezier */; };
 		E19DA02327C9F26200084D04 /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DA02227C9F26200084D04 /* HomeScreenView.swift */; };
 		E19DA02727C9F92B00084D04 /* fishTestBaked.scn in Resources */ = {isa = PBXBuildFile; fileRef = E19DA02627C9F92B00084D04 /* fishTestBaked.scn */; };
-
 		E19DA02B27CABC8F00084D04 /* FishTankARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DA02A27CABC8F00084D04 /* FishTankARView.swift */; };
-
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CA39517827C9EF9C008EFD4B /* Tank.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Tank.scn; sourceTree = "<group>"; };
 		CAF3ED8227C9CA010078BDFE /* MainScene.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = MainScene.scn; sourceTree = "<group>"; };
-		CAF3ED8427C9CA450078BDFE /* Fish.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Fish.scn; sourceTree = "<group>"; };
 		E19D9FFE27C9B2A000084D04 /* Remora.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Remora.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E19DA00127C9B2A000084D04 /* RemoraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoraApp.swift; sourceTree = "<group>"; };
 		E19DA00327C9B2A000084D04 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -41,9 +37,7 @@
 		E19DA01B27C9E53400084D04 /* ViewRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
 		E19DA02227C9F26200084D04 /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
 		E19DA02627C9F92B00084D04 /* fishTestBaked.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = fishTestBaked.scn; sourceTree = "<group>"; };
-
 		E19DA02A27CABC8F00084D04 /* FishTankARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishTankARView.swift; sourceTree = "<group>"; };
-
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +57,6 @@
 			children = (
 				CAF3ED8227C9CA010078BDFE /* MainScene.scn */,
 				E19DA02627C9F92B00084D04 /* fishTestBaked.scn */,
-				CAF3ED8427C9CA450078BDFE /* Fish.scn */,
 				CA39517827C9EF9C008EFD4B /* Tank.scn */,
 			);
 			path = sceneAssets;
@@ -175,7 +168,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAF3ED8527C9CA450078BDFE /* Fish.scn in Resources */,
 				CA39517927C9EF9C008EFD4B /* Tank.scn in Resources */,
 				E19DA00927C9B2A200084D04 /* Preview Assets.xcassets in Resources */,
 				E19DA02727C9F92B00084D04 /* fishTestBaked.scn in Resources */,
@@ -329,9 +321,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Remora/Preview Content\"";
-				DEVELOPMENT_TEAM = DUXN239A3S;
+				DEVELOPMENT_TEAM = 6B3Z2889MZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Remora needs your camera to create the Augmented Reality!";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -359,9 +352,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Remora/Preview Content\"";
-				DEVELOPMENT_TEAM = DUXN239A3S;
+				DEVELOPMENT_TEAM = 6B3Z2889MZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Remora needs your camera to create the Augmented Reality!";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
