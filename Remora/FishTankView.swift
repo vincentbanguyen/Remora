@@ -1,5 +1,6 @@
 import SwiftUI
 import SceneKit
+import SCNBezier
 
 struct FishTankView : UIViewRepresentable {
     let scene = SCNScene(named: "MainScene.scn")!
@@ -32,7 +33,15 @@ struct FishTankView : UIViewRepresentable {
         scnView.backgroundColor = UIColor.black
         
         let fishNode = setupNodes()!
-        moveFish(fishNode: fishNode)
+//        moveFish(fishNode: fishNode)
+        let bezPositions = [
+          SCNVector3(-1, 1, 0.01),
+          SCNVector3(1, 0.5, 0.4),
+          SCNVector3(1.0, -1, 0.1),
+          SCNVector3(0.4, -0.5, 0.01),
+          SCNVector3(-1, 1, 0.01)
+        ]
+        fishNode.runAction(SCNAction.repeatForever(.moveAlong(bezier: bezPositions, duration: 3)))
         
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA39517927C9EF9C008EFD4B /* Tank.scn in Resources */ = {isa = PBXBuildFile; fileRef = CA39517827C9EF9C008EFD4B /* Tank.scn */; };
 		CAF3ED8327C9CA010078BDFE /* MainScene.scn in Resources */ = {isa = PBXBuildFile; fileRef = CAF3ED8227C9CA010078BDFE /* MainScene.scn */; };
 		CAF3ED8527C9CA450078BDFE /* Fish.scn in Resources */ = {isa = PBXBuildFile; fileRef = CAF3ED8427C9CA450078BDFE /* Fish.scn */; };
 		E19DA00227C9B2A000084D04 /* RemoraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DA00127C9B2A000084D04 /* RemoraApp.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CA39517827C9EF9C008EFD4B /* Tank.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Tank.scn; sourceTree = "<group>"; };
 		CAF3ED8227C9CA010078BDFE /* MainScene.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = MainScene.scn; sourceTree = "<group>"; };
 		CAF3ED8427C9CA450078BDFE /* Fish.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Fish.scn; sourceTree = "<group>"; };
 		E19D9FFE27C9B2A000084D04 /* Remora.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Remora.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,6 +53,7 @@
 			children = (
 				CAF3ED8227C9CA010078BDFE /* MainScene.scn */,
 				CAF3ED8427C9CA450078BDFE /* Fish.scn */,
+				CA39517827C9EF9C008EFD4B /* Tank.scn */,
 			);
 			path = sceneAssets;
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAF3ED8527C9CA450078BDFE /* Fish.scn in Resources */,
+				CA39517927C9EF9C008EFD4B /* Tank.scn in Resources */,
 				E19DA00927C9B2A200084D04 /* Preview Assets.xcassets in Resources */,
 				E19DA00627C9B2A200084D04 /* Assets.xcassets in Resources */,
 				CAF3ED8327C9CA010078BDFE /* MainScene.scn in Resources */,
