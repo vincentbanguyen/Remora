@@ -14,6 +14,7 @@
 		E19DA00427C9B2A000084D04 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DA00327C9B2A000084D04 /* ContentView.swift */; };
 		E19DA00627C9B2A200084D04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E19DA00527C9B2A200084D04 /* Assets.xcassets */; };
 		E19DA00927C9B2A200084D04 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E19DA00827C9B2A200084D04 /* Preview Assets.xcassets */; };
+		E19DA01227C9CAD200084D04 /* FishTankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DA01127C9CAD200084D04 /* FishTankView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		E19DA00327C9B2A000084D04 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E19DA00527C9B2A200084D04 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E19DA00827C9B2A200084D04 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E19DA01127C9CAD200084D04 /* FishTankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishTankView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				E19DA00127C9B2A000084D04 /* RemoraApp.swift */,
 				E19DA00327C9B2A000084D04 /* ContentView.swift */,
 				CAF3ED7E27C9C8920078BDFE /* GameViewController.swift */,
+				E19DA01127C9CAD200084D04 /* FishTankView.swift */,
 				E19DA00527C9B2A200084D04 /* Assets.xcassets */,
 				E19DA00727C9B2A200084D04 /* Preview Content */,
 			);
@@ -156,6 +159,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E19DA01227C9CAD200084D04 /* FishTankView.swift in Sources */,
 				E19DA00427C9B2A000084D04 /* ContentView.swift in Sources */,
 				CAF3ED7F27C9C8920078BDFE /* GameViewController.swift in Sources */,
 				E19DA00227C9B2A000084D04 /* RemoraApp.swift in Sources */,
