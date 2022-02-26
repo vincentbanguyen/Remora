@@ -15,7 +15,7 @@ struct ContentView: View {
                 OnboardingWeightView()
                 
             case Screen.homeScreen:
-                FishTankView()
+                HomeScreenView()
             }
         }
         .environmentObject(viewRouter)
