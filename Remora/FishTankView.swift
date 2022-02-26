@@ -23,7 +23,7 @@ struct FishTankView : UIViewRepresentable {
     }
     
     func moveFish(fishNode: SCNNode){
-        fishNode.runAction(SCNAction.move(to: SCNVector3Make(5, 0, 5), duration: 0.25))
+        fishNode.runAction(SCNAction.move(to: SCNVector3Make(0, 0, -4), duration: 10))
     }
     
     func updateUIView(_ scnView: SCNView, context: Context) {
