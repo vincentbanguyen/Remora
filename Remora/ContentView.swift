@@ -16,9 +16,24 @@ struct ContentView: View {
                 
             case Screen.homeScreen:
                 HomeScreenView()
+                    .onAppear {
+                        UserDefaults.standard.set("homeScreen", forKey: "screenState")
+                    }
             }
         }
         .environmentObject(viewRouter)
+        .onAppear {
+            let screenState = UserDefaults.standard.string(forKey: "screenState") ?? "new"
+            
+            switch screenState {
+            case "homeScreen":
+                viewRouter.currentScreen = .homeScreen
+            case "new":
+                viewRouter.currentScreen = .onboardingName
+            default:
+                viewRouter.currentScreen = .onboardingName
+            }
+        }
     }
 }
 
