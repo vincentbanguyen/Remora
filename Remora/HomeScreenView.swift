@@ -4,12 +4,16 @@ import SwiftUI
 struct HomeScreenView: View {
     @State private var phrase = "Good job"
     let name = UserDefaults.standard.string(forKey: "name") ?? "Bob"
-    @State private var waterDrank = 2
-    let timeSinceDrank = Date().timeIntervalSinceReferenceDate - UserDefaults.standard.double(forKey: "timeSinceDrank") ?? Date().timeIntervalSinceReferenceDate
+    let waterDrank = 2
+    @State private var waterLeft = UserDefaults.standard.integer(forKey: "waterLeft") ?? 0
+    let timeSinceDrank = Date().timeIntervalSinceReferenceDate - UserDefaults.standard.double(forKey: "timeDrank") ?? Date().timeIntervalSinceReferenceDate
     
     func decreaseWater() {
         if(timeSinceDrank > 3600) {
-            waterDrank = waterDrank - Int(round(timeSinceDrank/3600))
+            waterLeft = waterLeft - Int(round(timeSinceDrank/3600))
+            if waterLeft < 0 {
+                waterLeft = 0
+            }
         }
     }
     
