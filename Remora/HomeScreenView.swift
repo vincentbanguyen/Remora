@@ -1,10 +1,26 @@
 import SwiftUI
 
+
 struct HomeScreenView: View {
     @State private var phrase = "Good job"
     let name = UserDefaults.standard.string(forKey: "name") ?? "Bob"
     let waterDrank = 2
+    
+    @EnvironmentObject var viewRouter: ViewRouter
+    @State private var waterLeft = UserDefaults.standard.integer(forKey: "waterLeft") ?? 0
+    let timeSinceDrank = Date().timeIntervalSinceReferenceDate - UserDefaults.standard.double(forKey: "timeDrank") ?? Date().timeIntervalSinceReferenceDate
+    
+    func decreaseWater() {
+        if(timeSinceDrank > 3600) {
+            waterLeft = waterLeft - Int(round(timeSinceDrank/3600))
+            if waterLeft < 0 {
+                waterLeft = 0
+            }
+        }
+    }
+    
     var body: some View {
+        
         
         ZStack {
             
@@ -12,7 +28,6 @@ struct HomeScreenView: View {
                 .ignoresSafeArea()
             
             // Top Message
-            
             VStack(alignment: .leading){
                 VStack(alignment: .leading) {
                     Text("\(phrase) \(name)!")
@@ -38,11 +53,24 @@ struct HomeScreenView: View {
                 Spacer()
             }
             .padding(.top, 30)
+            // TOP message
             
             // Tank View
+            
             FishTankView()
                 .frame(width: 400, height: 400)
+            
+            Button {
+                viewRouter.currentScreen = .arTankScreen
+            } label: {
+                Image(systemName: "cube.transparent")
+                    .font(.system(size: 40))
+            }
+            .offset(x: 140, y: -360)
+            
         }
+        
+        }.onAppear{decreaseWater()}
         .transition(.backslide)
     }
 }
