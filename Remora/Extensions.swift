@@ -27,6 +27,7 @@ struct CustomTextField: UIViewRepresentable {
     @Binding var text: String
     let placeholder: String
     let textColor: Color
+    let numpadMode: Bool
     class Coordinator: NSObject, UITextFieldDelegate {
         @Binding var text: String
         var becameFirstResponder = false
@@ -52,6 +53,10 @@ struct CustomTextField: UIViewRepresentable {
             roundedFont = UIFont(descriptor: descriptor, size: 32)
         } else {
             roundedFont = systemFont
+        }
+        
+        if numpadMode == true {
+            textField.keyboardType = .numberPad
         }
         
         textField.font = roundedFont

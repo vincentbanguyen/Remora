@@ -19,7 +19,7 @@ struct OnboardingNameView: View {
                     
                     VStack {
                         
-                        CustomTextField(text: $name, placeholder: "Name", textColor: Color(hex: "D2F4FF"))
+                        CustomTextField(text: $name, placeholder: "Name", textColor: Color(hex: "D2F4FF"), numpadMode: false)
                             .frame(width: 300, height: 30, alignment: .leading)
                         
                         Rectangle()
@@ -34,8 +34,10 @@ struct OnboardingNameView: View {
                 
                 Button {
                     withAnimation {
-                        viewRouter.currentScreen = .onboardingWeight
-                        UserDefaults.standard.set(name, forKey: "name")
+                        if name.count > 0 {
+                            viewRouter.currentScreen = .onboardingWeight
+                            UserDefaults.standard.set(name, forKey: "name")
+                        }
                     }
                 } label: {
                     ZStack {
@@ -45,7 +47,7 @@ struct OnboardingNameView: View {
                             .frame(width: 200, height: 50)
                         
                         Text("Next")
-                            .font(.system(size: 28, weight: .bold, design: .rounded))
+                            .font(.system(size: 28, weight: .semibold, design: .rounded))
                             .foregroundColor(Color(hex: "D2F4FF"))
                     }
                 }
@@ -75,8 +77,8 @@ struct OnboardingWeightView: View {
                     
                     VStack {
                         HStack {
-                        CustomTextField(text: $weight, placeholder: "Weight", textColor: .black)
-                            .frame(width: 250, height: 30, alignment: .leading)
+                            CustomTextField(text: $weight, placeholder: "", textColor: .black, numpadMode: true)
+                            .frame(width: 80, height: 30, alignment: .leading)
                             Text("lbs")
                                 .font(.system(size: 28, weight: .bold, design: .rounded))
                                 .foregroundColor(.black)
@@ -85,11 +87,12 @@ struct OnboardingWeightView: View {
                         Rectangle()
                             .fill(Color(hex: "27486D"))
                             .cornerRadius(20)
-                            .frame(width: 300, height: 12)
+                            .frame(width: 140, height: 12)
                     }
                     .padding(.top, 60)
                     
                 }
+                
                 Spacer()
                 
                 ZStack {
@@ -105,8 +108,12 @@ struct OnboardingWeightView: View {
                     
                     Button {
                         withAnimation {
-                            viewRouter.currentScreen = .homeScreen
-                            UserDefaults.standard.set(weight, forKey: "weight")
+                            if let weight = Int(weight) {
+                                if weight > 0 {
+                                    viewRouter.currentScreen = .homeScreen
+                                    UserDefaults.standard.set(weight, forKey: "weight")
+                                }
+                            }
                         }
                     } label: {
                         ZStack {
@@ -116,7 +123,7 @@ struct OnboardingWeightView: View {
                                 .frame(width: 200, height: 50)
                             
                             Text("Get Started")
-                                .font(.system(size: 28, weight: .bold, design: .rounded))
+                                .font(.system(size: 28, weight: .semibold, design: .rounded))
                                 .foregroundColor(.black)
                         }
                     }
