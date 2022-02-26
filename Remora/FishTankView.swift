@@ -1,24 +1,18 @@
 import SwiftUI
 import SceneKit
+import SCNBezier
 
 struct FishTankView : UIViewRepresentable {
     let scene = SCNScene(named: "MainScene.scn")!
     
     func makeUIView(context: Context) -> SCNView {
         
-        // can do camera progarmmaticaly or in mainScene
-//        let cameraNode = SCNNode()
-//        cameraNode.camera = SCNCamera()
-//        scene.rootNode.addChildNode(cameraNode)
-//
-//        cameraNode.position = SCNVector3(x: 0, y: 0, z: 100)
-        
         let scnView = SCNView()
         return scnView
     }
     
     func setupNodes() -> SCNNode? {
-        let fishNode = scene.rootNode.childNode(withName: "fish", recursively: true)!
+        let fishNode = scene.rootNode.childNode(withName: "Armature-001", recursively: true)!
         return fishNode
     }
     
@@ -33,6 +27,14 @@ struct FishTankView : UIViewRepresentable {
         
         let fishNode = setupNodes()!
         moveFish(fishNode: fishNode)
+        let bezPositions = [
+          SCNVector3(-1, 1, 0.01),
+          SCNVector3(1, 0.5, 0.4),
+          SCNVector3(1.0, -1, 0.1),
+          SCNVector3(0.4, -0.5, 0.01),
+          SCNVector3(-1, 1, 0.01)
+        ]
+        fishNode.runAction(SCNAction.repeatForever(.moveAlong(bezier: bezPositions, duration: 3)))
         
     }
 }

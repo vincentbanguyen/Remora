@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SCNBezier",
+        "repositoryURL": "https://github.com/maxxfrazer/SceneKit-Bezier-Animations",
+        "state": {
+          "branch": null,
+          "revision": "efe1f0b9b2dd9725a9dd2833c1e8b336077723da",
+          "version": "1.4.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
