@@ -7,19 +7,12 @@ struct FishTankView : UIViewRepresentable {
     
     func makeUIView(context: Context) -> SCNView {
         
-        // can do camera progarmmaticaly or in mainScene
-//        let cameraNode = SCNNode()
-//        cameraNode.camera = SCNCamera()
-//        scene.rootNode.addChildNode(cameraNode)
-//
-//        cameraNode.position = SCNVector3(x: 0, y: 0, z: 100)
-        
         let scnView = SCNView()
         return scnView
     }
     
     func setupNodes() -> SCNNode? {
-        let fishNode = scene.rootNode.childNode(withName: "fish", recursively: true)!
+        let fishNode = scene.rootNode.childNode(withName: "Armature-001", recursively: true)!
         return fishNode
     }
     
@@ -33,7 +26,7 @@ struct FishTankView : UIViewRepresentable {
         scnView.backgroundColor = UIColor.black
         
         let fishNode = setupNodes()!
-//        moveFish(fishNode: fishNode)
+        moveFish(fishNode: fishNode)
         let bezPositions = [
           SCNVector3(-1, 1, 0.01),
           SCNVector3(1, 0.5, 0.4),

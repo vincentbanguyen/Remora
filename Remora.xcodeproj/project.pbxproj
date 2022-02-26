@@ -19,6 +19,7 @@
 		E19DA01C27C9E53400084D04 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DA01B27C9E53400084D04 /* ViewRouter.swift */; };
 		E19DA01E27C9E57700084D04 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DA01A27C9E48F00084D04 /* Extensions.swift */; };
 		E19DA02127C9ED8C00084D04 /* SCNBezier in Frameworks */ = {isa = PBXBuildFile; productRef = E19DA02027C9ED8C00084D04 /* SCNBezier */; };
+		E19DA02727C9F92B00084D04 /* fishTestBaked.scn in Resources */ = {isa = PBXBuildFile; fileRef = E19DA02627C9F92B00084D04 /* fishTestBaked.scn */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		E19DA01527C9D2FA00084D04 /* OnboardingViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViews.swift; sourceTree = "<group>"; };
 		E19DA01A27C9E48F00084D04 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E19DA01B27C9E53400084D04 /* ViewRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
+		E19DA02627C9F92B00084D04 /* fishTestBaked.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = fishTestBaked.scn; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +54,7 @@
 			isa = PBXGroup;
 			children = (
 				CAF3ED8227C9CA010078BDFE /* MainScene.scn */,
+				E19DA02627C9F92B00084D04 /* fishTestBaked.scn */,
 				CAF3ED8427C9CA450078BDFE /* Fish.scn */,
 				CA39517827C9EF9C008EFD4B /* Tank.scn */,
 			);
@@ -165,6 +168,7 @@
 				CAF3ED8527C9CA450078BDFE /* Fish.scn in Resources */,
 				CA39517927C9EF9C008EFD4B /* Tank.scn in Resources */,
 				E19DA00927C9B2A200084D04 /* Preview Assets.xcassets in Resources */,
+				E19DA02727C9F92B00084D04 /* fishTestBaked.scn in Resources */,
 				E19DA00627C9B2A200084D04 /* Assets.xcassets in Resources */,
 				CAF3ED8327C9CA010078BDFE /* MainScene.scn in Resources */,
 			);
