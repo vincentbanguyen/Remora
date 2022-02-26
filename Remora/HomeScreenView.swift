@@ -43,9 +43,8 @@ struct HomeScreenView: View {
             FishTankView()
                 .frame(width: 400, height: 400)
         }
-        
+        .transition(.backslide)
     }
-    
 }
 
 struct HomeScreenView_Previews: PreviewProvider {
