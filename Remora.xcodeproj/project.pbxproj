@@ -17,6 +17,7 @@
 		E19DA01627C9D2FA00084D04 /* OnboardingViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DA01527C9D2FA00084D04 /* OnboardingViews.swift */; };
 		E19DA01C27C9E53400084D04 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DA01B27C9E53400084D04 /* ViewRouter.swift */; };
 		E19DA01E27C9E57700084D04 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DA01A27C9E48F00084D04 /* Extensions.swift */; };
+		E19DA02127C9ED8C00084D04 /* SCNBezier in Frameworks */ = {isa = PBXBuildFile; productRef = E19DA02027C9ED8C00084D04 /* SCNBezier */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E19DA02127C9ED8C00084D04 /* SCNBezier in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +111,9 @@
 			dependencies = (
 			);
 			name = Remora;
+			packageProductDependencies = (
+				E19DA02027C9ED8C00084D04 /* SCNBezier */,
+			);
 			productName = Remora;
 			productReference = E19D9FFE27C9B2A000084D04 /* Remora.app */;
 			productType = "com.apple.product-type.application";
@@ -137,6 +142,9 @@
 				Base,
 			);
 			mainGroup = E19D9FF527C9B2A000084D04;
+			packageReferences = (
+				E19DA01F27C9ED8C00084D04 /* XCRemoteSwiftPackageReference "SceneKit-Bezier-Animations" */,
+			);
 			productRefGroup = E19D9FFF27C9B2A000084D04 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -373,6 +381,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E19DA01F27C9ED8C00084D04 /* XCRemoteSwiftPackageReference "SceneKit-Bezier-Animations" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/maxxfrazer/SceneKit-Bezier-Animations";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E19DA02027C9ED8C00084D04 /* SCNBezier */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E19DA01F27C9ED8C00084D04 /* XCRemoteSwiftPackageReference "SceneKit-Bezier-Animations" */;
+			productName = SCNBezier;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E19D9FF627C9B2A000084D04 /* Project object */;
 }
