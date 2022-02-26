@@ -58,10 +58,10 @@ struct FishTankView: UIViewRepresentable {
             return true
         }
         
-            @objc func handleTap(_ gestureRecognize: UITapGestureRecognizer) {
-                print("HI")
-            }
-                
+        @objc func handleTap(_ gestureRecognize: UITapGestureRecognizer) {
+            print("HI")
+        }
+        
         @objc func handlePan(_ gestureRecognize: UIPanGestureRecognizer) {
             // retrieve scene
             print("HI")

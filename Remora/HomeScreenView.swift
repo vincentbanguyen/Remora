@@ -4,6 +4,9 @@ struct HomeScreenView: View {
     @State private var phrase = "Good job"
     let name = UserDefaults.standard.string(forKey: "name") ?? "Bob"
     let waterDrank = 2
+    
+    @EnvironmentObject var viewRouter: ViewRouter
+    
     var body: some View {
         
         ZStack {
@@ -12,8 +15,7 @@ struct HomeScreenView: View {
                 .ignoresSafeArea()
             
             // Top Message
-            
-            VStack(alignment: .leading){
+            VStack(alignment: .leading) {
                 VStack(alignment: .leading) {
                     Text("\(phrase) \(name)!")
                         .font(.system(size: 28, weight: .bold, design: .rounded))
@@ -38,11 +40,23 @@ struct HomeScreenView: View {
                 Spacer()
             }
             .padding(.top, 30)
+            // TOP message
             
             // Tank View
-            FishTankARView()
+            
+            FishTankView()
                 .frame(width: 400, height: 400)
+            
+            Button {
+                viewRouter.currentScreen = .arTankScreen
+            } label: {
+                Image(systemName: "cube.transparent")
+                    .font(.system(size: 40))
+            }
+            .offset(x: 140, y: -360)
+            
         }
+        
         .transition(.backslide)
     }
 }

@@ -19,6 +19,8 @@ struct ContentView: View {
                     .onAppear {
                         UserDefaults.standard.set("homeScreen", forKey: "screenState")
                     }
+            case Screen.arTankScreen:
+                ArTankView()
             }
         }
         .environmentObject(viewRouter)
