@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CAF3ED7727C9C3F00078BDFE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF3ED7627C9C3F00078BDFE /* GameViewController.swift */; };
 		E19DA00227C9B2A000084D04 /* RemoraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DA00127C9B2A000084D04 /* RemoraApp.swift */; };
 		E19DA00427C9B2A000084D04 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DA00327C9B2A000084D04 /* ContentView.swift */; };
 		E19DA00627C9B2A200084D04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E19DA00527C9B2A200084D04 /* Assets.xcassets */; };
@@ -14,6 +15,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CAF3ED7427C9C24C0078BDFE /* MainScene.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = MainScene.scn; path = "../../../../testing/testing Shared/sceneAssets/MainScene.scn"; sourceTree = "<group>"; };
+		CAF3ED7527C9C2580078BDFE /* fish.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = fish.scn; path = "../../../../testing/testing Shared/sceneAssets/fish.scn"; sourceTree = "<group>"; };
+		CAF3ED7627C9C3F00078BDFE /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameViewController.swift; path = "../../../testing/testing iOS/GameViewController.swift"; sourceTree = "<group>"; };
 		E19D9FFE27C9B2A000084D04 /* Remora.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Remora.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E19DA00127C9B2A000084D04 /* RemoraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoraApp.swift; sourceTree = "<group>"; };
 		E19DA00327C9B2A000084D04 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,6 +36,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CAF3ED7127C9C1940078BDFE /* sceneAssets */ = {
+			isa = PBXGroup;
+			children = (
+				CAF3ED7427C9C24C0078BDFE /* MainScene.scn */,
+				CAF3ED7527C9C2580078BDFE /* fish.scn */,
+			);
+			path = sceneAssets;
+			sourceTree = "<group>";
+		};
 		E19D9FF527C9B2A000084D04 = {
 			isa = PBXGroup;
 			children = (
@@ -51,7 +64,9 @@
 		E19DA00027C9B2A000084D04 /* Remora */ = {
 			isa = PBXGroup;
 			children = (
+				CAF3ED7127C9C1940078BDFE /* sceneAssets */,
 				E19DA00127C9B2A000084D04 /* RemoraApp.swift */,
+				CAF3ED7627C9C3F00078BDFE /* GameViewController.swift */,
 				E19DA00327C9B2A000084D04 /* ContentView.swift */,
 				E19DA00527C9B2A200084D04 /* Assets.xcassets */,
 				E19DA00727C9B2A200084D04 /* Preview Content */,
@@ -138,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E19DA00427C9B2A000084D04 /* ContentView.swift in Sources */,
+				CAF3ED7727C9C3F00078BDFE /* GameViewController.swift in Sources */,
 				E19DA00227C9B2A000084D04 /* RemoraApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
