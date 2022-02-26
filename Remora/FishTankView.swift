@@ -8,10 +8,16 @@ struct FishTankView: UIViewRepresentable {
     var view = SCNView()
     
     func makeUIView(context: Context) -> SCNView {
+        let cameraNode = scene.rootNode.childNode(withName: "camera", recursively: true)!
+        
+        print("----start----")
+        print(cameraNode.position.x)
+        print(cameraNode.position.y)
+        print(cameraNode.position.z)
         
         let fishNode = setupNodes()!
+        setUpCamera()
         view.scene = scene
-        //view.allowsCameraControl = true
         let panGesture = UIPanGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handlePan(_:)))
         panGesture.delegate = context.coordinator
         view.addGestureRecognizer(panGesture)
@@ -24,6 +30,8 @@ struct FishTankView: UIViewRepresentable {
           SCNVector3(0.4, -0.5, 0.01),
           SCNVector3(-1, 1, 0.01)
         ]
+        
+        
         fishNode.runAction(SCNAction.repeatForever(.moveAlong(bezier: bezPositions, duration: 3)))
         return view
     }
@@ -31,6 +39,49 @@ struct FishTankView: UIViewRepresentable {
     func setupNodes() -> SCNNode? {
         let fishNode = scene.rootNode.childNode(withName: "Armature-001", recursively: true)!
         return fishNode
+    }
+    
+    func setUpCamera() {
+        let cameraNode = scene.rootNode.childNode(withName: "camera", recursively: true)!
+        
+        // record start value
+        let cameraXStart = cameraNode.position.x
+        let cameraYStart = cameraNode.position.y
+        let cameraZStart = cameraNode.position.z - 1.0
+        
+        let cameraAngleStartZ = cameraNode.eulerAngles.z
+        let cameraAngleStartX = cameraNode.eulerAngles.x
+        let radiusSquare = cameraXStart * cameraXStart + cameraYStart * cameraYStart + cameraZStart * cameraZStart
+        
+        // get new Value
+        var cameraNewAngleZ = cameraAngleStartZ
+        var cameraNewAngleX = cameraAngleStartX
+        
+        if cameraNewAngleZ >= 100 * Float.pi {
+            cameraNewAngleZ = cameraNewAngleZ - 100 * Float.pi
+        } else if cameraNewAngleZ < -100 * Float.pi {
+            cameraNewAngleZ = cameraNewAngleZ + 100 * Float.pi
+        } else {
+            // set limit
+            if cameraNewAngleX > 1.4 {
+                cameraNewAngleX = 1.4
+            } else if cameraNewAngleX < 0.1 {
+                cameraNewAngleX = 0.1
+            }
+            // use angle value to get position value
+            let cameraNewX =  sqrt(radiusSquare) * cos(cameraNewAngleZ - Float.pi/2) * cos(cameraNewAngleX - Float.pi/2)
+            let cameraNewY =  sqrt(radiusSquare) * sin(cameraNewAngleZ - Float.pi/2) * cos(cameraNewAngleX - Float.pi/2)
+            let cameraNewZ = -sqrt(radiusSquare) * sin(cameraNewAngleX - Float.pi/2) + 1
+            
+            if cameraNode.camera?.usesOrthographicProjection == false {
+                cameraNode.position = SCNVector3Make(cameraNewX, cameraNewY, cameraNewZ)
+                cameraNode.eulerAngles = SCNVector3Make(cameraNewAngleX, 0, cameraNewAngleZ)
+            }
+            else if cameraNode.camera?.usesOrthographicProjection == true {
+                cameraNode.position = SCNVector3Make(0, 0, 10)
+                cameraNode.eulerAngles = SCNVector3Make(0, 0, cameraNewAngleZ)
+            }
+        }
     }
     
     func moveFish(fishNode: SCNNode){
@@ -58,16 +109,9 @@ struct FishTankView: UIViewRepresentable {
             return true
         }
         
-            @objc func handleTap(_ gestureRecognize: UITapGestureRecognizer) {
-                print("HI")
-            }
-                
         @objc func handlePan(_ gestureRecognize: UIPanGestureRecognizer) {
-            // retrieve scene
-            print("HI")
             // save node data and pan gesture data
             let cameraNode = scene.rootNode.childNode(withName: "camera", recursively: true)!
-            //let translation = gestureRecognize.translation(in: gestureRecognize.view!)
             
             let speed = gestureRecognize.velocity(in: gestureRecognize.view!)
             var speedX = sign(Float(speed.x)) * Float(sqrt(abs(speed.x)))
