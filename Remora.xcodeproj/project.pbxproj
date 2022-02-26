@@ -19,8 +19,8 @@
 		E19DA01C27C9E53400084D04 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DA01B27C9E53400084D04 /* ViewRouter.swift */; };
 		E19DA01E27C9E57700084D04 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DA01A27C9E48F00084D04 /* Extensions.swift */; };
 		E19DA02127C9ED8C00084D04 /* SCNBezier in Frameworks */ = {isa = PBXBuildFile; productRef = E19DA02027C9ED8C00084D04 /* SCNBezier */; };
-		E19DA02727C9F92B00084D04 /* fishTestBaked.scn in Resources */ = {isa = PBXBuildFile; fileRef = E19DA02627C9F92B00084D04 /* fishTestBaked.scn */; };
 		E19DA02327C9F26200084D04 /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DA02227C9F26200084D04 /* HomeScreenView.swift */; };
+		E19DA02727C9F92B00084D04 /* fishTestBaked.scn in Resources */ = {isa = PBXBuildFile; fileRef = E19DA02627C9F92B00084D04 /* fishTestBaked.scn */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,8 +36,8 @@
 		E19DA01527C9D2FA00084D04 /* OnboardingViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViews.swift; sourceTree = "<group>"; };
 		E19DA01A27C9E48F00084D04 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E19DA01B27C9E53400084D04 /* ViewRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
-		E19DA02627C9F92B00084D04 /* fishTestBaked.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = fishTestBaked.scn; sourceTree = "<group>"; };
 		E19DA02227C9F26200084D04 /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
+		E19DA02627C9F92B00084D04 /* fishTestBaked.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = fishTestBaked.scn; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -321,7 +321,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Remora/Preview Content\"";
-				DEVELOPMENT_TEAM = 6B3Z2889MZ;
+				DEVELOPMENT_TEAM = DUXN239A3S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -329,6 +329,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -350,7 +351,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Remora/Preview Content\"";
-				DEVELOPMENT_TEAM = 6B3Z2889MZ;
+				DEVELOPMENT_TEAM = DUXN239A3S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -358,6 +359,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
