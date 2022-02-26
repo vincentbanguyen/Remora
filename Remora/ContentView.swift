@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  Remora
-//
-//  Created by Vincent Nguyen on 2/25/22.
-//
-
 import SwiftUI
 
 struct ContentView: View {
