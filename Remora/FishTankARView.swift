@@ -50,6 +50,18 @@ struct FishTankARView: UIViewRepresentable {
             return fishNode
         }
         
+        func setupCubeNode() -> SCNNode? {
+            guard let cubeNode = scene.rootNode.childNode(withName: "Cube", recursively: true)
+            else {return nil}
+            return cubeNode
+        }
+        
+        func setupTankNode() -> SCNNode? {
+            guard let tankNode = scene.rootNode.childNode(withName: "Tank", recursively: true)
+            else {return nil}
+            return tankNode
+        }
+        
         func fixedNodeYPos(tempNode: SCNNode) -> SCNVector3 {
             return SCNVector3Make(tempNode.position.x, tempNode.position.y + 0.05, tempNode.position.z)
         }
@@ -65,12 +77,6 @@ struct FishTankARView: UIViewRepresentable {
                 SCNVector3(node.position.x + 0.03, node.position.y + 0, node.position.z + 0)
             ]
             node.runAction(SCNAction.repeatForever(.moveAlong(bezier: bezPositions, duration: 8)))
-        }
-        
-        func setupTankNode() -> SCNNode? {
-            guard let tankNode = scene.rootNode.childNode(withName: "tank", recursively: true)
-            else {return nil}
-            return tankNode
         }
         
         @objc func handleTap(_ gestureRecognize: UITapGestureRecognizer) {
@@ -99,10 +105,22 @@ struct FishTankARView: UIViewRepresentable {
                 if (node.name == "Cube") {
                     node.transform = SCNMatrix4(result.worldTransform)
                     let tempNode = node
-                    tempNode.scale = SCNVector3Make(0.1, 0.1, 0.1)
+                    tempNode.scale = SCNVector3Make(0.00001, 0.00001, 0.00001)
                     tempNode.position = fixedNodeYPos(tempNode: tempNode)
                     print(tempNode.position)
                     node.removeFromParentNode()
+                    print(tempNode.scale)
+                    arView.scene.rootNode.addChildNode(tempNode)
+                }
+                if (node.name == "Tank") {
+                    node.transform = SCNMatrix4(result.worldTransform)
+                    let tempNode = node
+                    tempNode.scale = SCNVector3Make(0.06, 0.06, 0.06)
+                    tempNode.position = fixedNodeYPos(tempNode: tempNode)
+                    tempNode.opacity = 0.5
+                    print(tempNode.position)
+                    node.removeFromParentNode()
+                    print(tempNode.scale)
                     arView.scene.rootNode.addChildNode(tempNode)
                 }
                 print("set new pos")
@@ -117,13 +135,24 @@ struct FishTankARView: UIViewRepresentable {
                 moveFish(node: tempNode!)
             }
             
+            let cubeNode = setupCubeNode()
+            cubeNode?.transform = SCNMatrix4(result.worldTransform)
+            let tempNode2 = cubeNode
+            tempNode2?.position = fixedNodeYPos(tempNode: tempNode2!)
+            tempNode2?.scale = SCNVector3Make(0.00001, 0.00001, 0.00001)
+            if(tempNode2 != nil) {
+                print(tempNode2?.scale)
+                arView.scene.rootNode.addChildNode(tempNode2!)
+            }
+            
             let tankNode = setupTankNode()
             tankNode?.transform = SCNMatrix4(result.worldTransform)
-            let tempNode2 = tankNode
-            tempNode2?.position = fixedNodeYPos(tempNode: tempNode2!)
-            tempNode2?.scale = SCNVector3Make(0.1, 0.1, 0.1)
-            if(tempNode2 != nil) {
-                arView.scene.rootNode.addChildNode(tempNode2!)
+            let tempNode3 = tankNode
+            tempNode3?.position = fixedNodeYPos(tempNode: tempNode3!)
+            tempNode3?.scale = SCNVector3Make(0.06, 0.06, 0.06)
+            tempNode3?.opacity = 0.5
+            if(tempNode3 != nil) {
+                arView.scene.rootNode.addChildNode(tempNode3!)
             }
         }
     }
