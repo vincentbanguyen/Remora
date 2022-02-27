@@ -22,6 +22,12 @@ struct WaterInputView: View {
     @State private var isDrinking = true
     
     @Binding var selectedContainer: String
+    @State private var currentOz = { (currentWaterLevel: Int) -> Int in
+        
+        let currentOz = Int(Double(currentWaterLevel / 600) * 0.2)
+        
+        return currentOz
+    }
     
     var body: some View {
         ZStack {
@@ -57,16 +63,12 @@ struct WaterInputView: View {
                         .frame(width: 150, height: 400)
                 }
                 .position(x: screenWidth / 2, y: bottomLevel - 200)
-                
-            
-            
-            
             
             RoundedRectangle(cornerRadius: 10) // Water
                 .foregroundColor(Color(hex: "00B3DB"))
                 .frame(width: screenWidth, height: 800)
                 .position(x: screenWidth / 2,y: CGFloat(currentWaterLevel + 400))
-                
+
                 .mask {
                     Image(selectedContainer)
                         .resizable()
@@ -89,15 +91,15 @@ struct WaterInputView: View {
                     print(selectedContainer)
                 }
             
-            VStack {
-                
+            
+            HStack {
                 Spacer()
                 
                 VStack {
                     Toggle("Hi", isOn: $isDrinking).labelsHidden()
                     Text(isDrinking ? "Drinking" : "Refilling")
                         .font(.system(size: 12, weight: .bold, design: .rounded))
-                        .foregroundColor(Color(hex: "00B3DB"))
+                        .foregroundColor(.black)
                 }
                 .onChange(of: isDrinking) { isDrinking in
                     if isDrinking == true {
@@ -107,8 +109,29 @@ struct WaterInputView: View {
                             currentWaterLevel = 200
                     }
                 }
-                .offset(y: -5)
+                .offset(y: -230)
+            }
+            .padding(30)
+            
+            VStack(spacing: 20) {
                 
+                Spacer()
+                Button {
+                    // prompt
+                } label: {
+                    ZStack {
+                    Text(" \(currentOz(currentWaterLevel))/\(UserDefaults.standard.integer(forKey: selectedContainer)) oz")
+                        .font(.system(size: 28, weight: .semibold, design: .rounded))
+                        .foregroundColor(.black)
+                        
+                        Image(systemName: "pencil")
+                            .font(.system(size: 25, weight: .bold))
+                            .offset(x: 60)
+                            .foregroundColor(.black)
+                    }
+                }
+                
+
                 Button {
                     withAnimation {
                         presentationMode.wrappedValue.dismiss()
@@ -151,7 +174,7 @@ struct WaterInputView: View {
 }
 
 struct WaterInputView_Previews: PreviewProvider {
-    @State static var selectedContainer = "flask_mask"
+    @State static var selectedContainer = "flaskmask"
     static var previews: some View {
         WaterInputView(selectedContainer: $selectedContainer)
     }

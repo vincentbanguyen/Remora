@@ -81,7 +81,7 @@ struct HomeScreenView: View {
                 .frame(width: 350, height: 80, alignment: .leading)
                 Spacer()
             }
-            .padding(.top, 50)
+            .padding(.top, 60)
             // TOP message
             
             // Tank View
@@ -198,6 +198,7 @@ struct HomeScreenView: View {
         }
         
         if UserDefaults.standard.string(forKey: "notif") != "notifSet" {
+            print("setting up notif")
             let content = UNMutableNotificationContent()
             content.title = "Remora Reminder"
             content.subtitle = "Hey \(name), don't forget to drink water 💧"
