@@ -48,10 +48,10 @@ struct HomeScreenView: View {
                         .foregroundColor(Color(hex: "080809"))
                 FishTankARView()
                     .ignoresSafeArea()
-                    .frame(width: screenWidth * 0.88, height: screenHeight * 0.55)
+                    .frame(width: screenWidth * 0.8, height: screenHeight * 0.45)
                     .cornerRadius(30)
-                    .padding(.top, 50)
-                    .offset(y: -20)
+                    .padding(.top, 20)
+                    .offset(y: 20)
                 
                 }
             }
@@ -61,7 +61,7 @@ struct HomeScreenView: View {
             VStack(alignment: .leading, spacing: 10) {
                     // Tank View
                         
-                        HStack(spacing: screenWidth * 0.6) {
+                        HStack() {
                             
                             Button {
                                 viewRouter.currentScreen = .onboardingName
@@ -69,6 +69,7 @@ struct HomeScreenView: View {
                                 Image(systemName: "gearshape.fill")
                                     .font(.system(size: 40))
                             }
+                            Spacer()
                             Button {
                                 arMode.toggle()
                                 fishTankOpacity = 1
