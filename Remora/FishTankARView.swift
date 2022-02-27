@@ -79,12 +79,13 @@ struct FishTankARView: UIViewRepresentable {
                 return SCNVector3(0.06, 0, 0.06)
             }
             print("water level: " + String(waterLevel))
-            var difference = UserDefaults.standard.integer(forKey: "recommendedIntake") - waterLevel
+            let recommendedIntake = UserDefaults.standard.integer(forKey: "recommendedIntake")
+            var difference = recommendedIntake - waterLevel
             if difference <= 0 {
                 difference = 0
             }
             print(difference)
-            return SCNVector3(0.06, 0.06 - Float(difference), 0.06)
+            return SCNVector3(0.06, 0.06 - (Double(difference)/Double(recommendedIntake))*0.06, 0.06)
         }
         
         func moveFish(node: SCNNode) {
@@ -138,7 +139,7 @@ struct FishTankARView: UIViewRepresentable {
                     let tempNode = node
                     tempNode.scale = SCNVector3Make(0.06, 0.06, 0.06)
                     tempNode.position = fixedNodeYPos(tempNode: tempNode)
-                    tempNode.opacity = 0.5
+                    tempNode.opacity = 0.3
                     print(tempNode.position)
                     node.removeFromParentNode()
                     print(tempNode.scale)
@@ -182,7 +183,7 @@ struct FishTankARView: UIViewRepresentable {
             let tempNode3 = tankNode
             tempNode3?.position = fixedNodeYPos(tempNode: tempNode3!)
             tempNode3?.scale = SCNVector3Make(0.06, 0.06, 0.06)
-            tempNode3?.opacity = 0.5
+            tempNode3?.opacity = 0.3
             if(tempNode3 != nil) {
                 arView.scene.rootNode.addChildNode(tempNode3!)
             }
@@ -192,6 +193,7 @@ struct FishTankARView: UIViewRepresentable {
             let tempNode4 = boxNode
             tempNode4?.position = fixedNodeYPos(tempNode: tempNode4!)
             tempNode4?.scale = setWaterLevel(waterLevel: UserDefaults.standard.integer(forKey: "waterLeft"))
+          //  tempNode4?.position = SCNVector3((tempNode4?.position.x)!, (tempNode4?.position.y)! - (1 - ((tempNode4?.scale.y)!)/0.06), (tempNode4?.position.z) as! Float)
             tempNode4?.opacity = 0.9
             if(tempNode4 != nil) {
                 arView.scene.rootNode.addChildNode(tempNode4!)

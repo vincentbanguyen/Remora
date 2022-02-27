@@ -13,6 +13,7 @@ struct FishTankView: UIViewRepresentable {
         
         let fishNode = setupNodes()!
         setUpCamera()
+        setupBoxNode()
         view.scene = scene
         
         let panGesture = UIPanGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handlePan(_:)))
@@ -36,6 +37,30 @@ struct FishTankView: UIViewRepresentable {
     func setupNodes() -> SCNNode? {
         let fishNode = scene.rootNode.childNode(withName: "Armature", recursively: true)!
         return fishNode
+    }
+    
+    func setupTankNode() -> SCNNode? {
+        let tankNode = scene.rootNode.childNode(withName: "Tank", recursively: true)
+        return tankNode
+    }
+    
+    func setupBoxNode() -> SCNNode? {
+        print("here1")
+        let boxNode = scene.rootNode.childNode(withName: "Box", recursively: true)
+        let waterLevel = UserDefaults.standard.integer(forKey: "waterLeft")
+        if waterLevel <= 0 {
+            boxNode?.scale = SCNVector3(1, 0, 1)
+        } else {
+            print("here2")
+            let recommendedIntake = UserDefaults.standard.integer(forKey: "recommendedIntake")
+            var difference = recommendedIntake - waterLevel
+            if difference <= 0 {
+                difference = 0
+            }
+            boxNode?.position = SCNVector3((boxNode?.position.x)!, 1 - Float((Double(difference)/Double(recommendedIntake))), (boxNode?.position.z)!)
+            boxNode?.scale = SCNVector3(1, 1 - (Double(difference)/Double(recommendedIntake)), 1)
+        }
+        return boxNode
     }
     
     func setUpCamera() {
