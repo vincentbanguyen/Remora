@@ -28,4 +28,4 @@ We also wanted to develop an accurate water drinking recording system, so our id
 Creating Remora was an amazing experience where we learned how to make a mobile app that has augmented reality, improved our version control skills, and collaborated better to spark innovative ideas. Working under a 36-hour time constraint also helped us work under pressure, but have fun at the same time!
 
 ## What's next for Remora
-So much! We hope to improve Remora’s movement in the fish tank as well as take our augmented technology to the next level by adding the option to interact with Remora. We hope to add in 3d food pellets that Remora would swim up to and eat. Our goal is to motivate users to drink water for Remora’s sake, so our efforts will be focused on strengthening that emotional bond.
+So much! We hope to improve Remora’s movement in the fish tank as well as take our augmented technology to the next level by adding the option to interact with Remora. We hope to add in 3D food pellets that Remora would swim up to and eat. Our goal is to motivate users to drink water for Remora’s sake, so our efforts will be focused on strengthening that emotional bond.
