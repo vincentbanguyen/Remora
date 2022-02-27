@@ -51,7 +51,7 @@ struct FishTankARView: UIViewRepresentable {
         }
         
         func setupCubeNode() -> SCNNode? {
-            guard let cubeNode = scene.rootNode.childNode(withName: "Cube", recursively: true)
+            guard let cubeNode = scene.rootNode.childNode(withName: "Cube-001", recursively: true)
             else {return nil}
             return cubeNode
         }
@@ -62,8 +62,22 @@ struct FishTankARView: UIViewRepresentable {
             return tankNode
         }
         
+        func setupBoxNode() -> SCNNode? {
+            guard let tankNode = scene.rootNode.childNode(withName: "Box", recursively: true)
+            else {return nil}
+            return tankNode
+        }
+        
         func fixedNodeYPos(tempNode: SCNNode) -> SCNVector3 {
             return SCNVector3Make(tempNode.position.x, tempNode.position.y + 0.05, tempNode.position.z)
+        }
+        
+        func setWaterLevel(waterLevel: Int) -> SCNVector3 {
+            if waterLevel <= 0 {
+                return SCNVector3Make(0.06, 0, 0.06)
+            }
+            print("water level: " + String(waterLevel))
+            return SCNVector3Make(0.06, 0.06 - Float(waterLevel/100), 0.06)
         }
         
         func moveFish(node: SCNNode) {
@@ -102,7 +116,7 @@ struct FishTankARView: UIViewRepresentable {
                     arView.scene.rootNode.addChildNode(tempNode)
                     moveFish(node: tempNode)
                 }
-                if (node.name == "Cube") {
+                if (node.name == "Cube-001") {
                     node.transform = SCNMatrix4(result.worldTransform)
                     let tempNode = node
                     tempNode.scale = SCNVector3Make(0.00001, 0.00001, 0.00001)
@@ -118,6 +132,17 @@ struct FishTankARView: UIViewRepresentable {
                     tempNode.scale = SCNVector3Make(0.06, 0.06, 0.06)
                     tempNode.position = fixedNodeYPos(tempNode: tempNode)
                     tempNode.opacity = 0.5
+                    print(tempNode.position)
+                    node.removeFromParentNode()
+                    print(tempNode.scale)
+                    arView.scene.rootNode.addChildNode(tempNode)
+                }
+                if (node.name == "Box") {
+                    node.transform = SCNMatrix4(result.worldTransform)
+                    let tempNode = node
+                    tempNode.scale = setWaterLevel(waterLevel: UserDefaults.standard.integer(forKey: "waterLeft"))
+                    tempNode.position = fixedNodeYPos(tempNode: tempNode)
+                    tempNode.opacity = 0.9
                     print(tempNode.position)
                     node.removeFromParentNode()
                     print(tempNode.scale)
@@ -142,7 +167,7 @@ struct FishTankARView: UIViewRepresentable {
             tempNode2?.scale = SCNVector3Make(0.00001, 0.00001, 0.00001)
             if(tempNode2 != nil) {
                 print(tempNode2?.scale)
-                arView.scene.rootNode.addChildNode(tempNode2!)
+           //     arView.scene.rootNode.addChildNode(tempNode2!)
             }
             
             let tankNode = setupTankNode()
@@ -152,7 +177,17 @@ struct FishTankARView: UIViewRepresentable {
             tempNode3?.scale = SCNVector3Make(0.06, 0.06, 0.06)
             tempNode3?.opacity = 0.5
             if(tempNode3 != nil) {
-                arView.scene.rootNode.addChildNode(tempNode3!)
+         //       arView.scene.rootNode.addChildNode(tempNode3!)
+            }
+            
+            let boxNode = setupBoxNode()
+            boxNode?.transform = SCNMatrix4(result.worldTransform)
+            let tempNode4 = boxNode
+            tempNode4?.position = fixedNodeYPos(tempNode: tempNode4!)
+            tempNode4?.scale = setWaterLevel(waterLevel: UserDefaults.standard.integer(forKey: "waterLeft"))
+            tempNode4?.opacity = 0.9
+            if(tempNode4 != nil) {
+                arView.scene.rootNode.addChildNode(tempNode4!)
             }
         }
     }
