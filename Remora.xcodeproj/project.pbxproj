@@ -337,7 +337,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Remora/Preview Content\"";
-				DEVELOPMENT_TEAM = 6B3Z2889MZ;
+				DEVELOPMENT_TEAM = DUXN239A3S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Remora needs your camera to create the Augmented Reality!";
@@ -368,7 +368,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Remora/Preview Content\"";
-				DEVELOPMENT_TEAM = 6B3Z2889MZ;
+				DEVELOPMENT_TEAM = DUXN239A3S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Remora needs your camera to create the Augmented Reality!";
