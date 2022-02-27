@@ -7,7 +7,6 @@ struct FishTankARView: UIViewRepresentable {
     
     func makeUIView(context: Context) -> ARSCNView {
         
-        arView.scene = scene
         let tapGesture = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handleTap(_:)))
         tapGesture.delegate = context.coordinator
         arView.addGestureRecognizer(tapGesture)
@@ -45,24 +44,23 @@ struct FishTankARView: UIViewRepresentable {
             return true
         }
         
-        private func createCubeNode() -> SCNNode {
-            // create the basic geometry of the box (sizes are in meters)
-            let boxGeometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0)
-
-            // give the box a material to make a little more realistic
-            let material = SCNMaterial()
-            material.diffuse.contents = UIColor.blue
-            material.specular.contents = UIColor(white: 0.6, alpha: 1.0)
-
-            // create the node and give it the materials
-            let boxNode = SCNNode(geometry: boxGeometry)
-            boxNode.geometry?.materials = [material]
-
-            return boxNode
+        func setupFishNode() -> SCNNode? {
+            guard let fishNode = scene.rootNode.childNode(withName: "Armature-001", recursively: true)
+            else {return nil}
+            return fishNode
+        }
+        
+        func fixedNodeYPos(tempNode: SCNNode) -> SCNVector3 {
+            return SCNVector3Make(tempNode.position.x, tempNode.position.y + 0.05, tempNode.position.z)
+        }
+        
+        func setupTankNode() -> SCNNode? {
+            guard let tankNode = scene.rootNode.childNode(withName: "tank", recursively: true)
+            else {return nil}
+            return tankNode
         }
         
         @objc func handleTap(_ gestureRecognize: UITapGestureRecognizer) {
-            
             let location = gestureRecognize.location(in: arView)
             
             guard let query = arView.raycastQuery(from: location, allowing: .estimatedPlane, alignment: .horizontal) else {
@@ -74,12 +72,43 @@ struct FishTankARView: UIViewRepresentable {
               print("Couldn't match the raycast with a plane.")
               return
             }
-                 
-            let cube = createCubeNode()
-
-            cube.transform = SCNMatrix4(result.worldTransform)
-
-            arView.scene.rootNode.addChildNode(cube)
+            
+            arView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                if (node.name == "Armature-001") {
+                    node.transform = SCNMatrix4(result.worldTransform)
+                    let tempNode = node
+                    tempNode.scale = SCNVector3Make(0.01, 0.01, 0.01)
+                    tempNode.position = fixedNodeYPos(tempNode: tempNode)
+                    node.removeFromParentNode()
+                    arView.scene.rootNode.addChildNode(tempNode)
+                }
+                if (node.name == "tank") {
+                    node.transform = SCNMatrix4(result.worldTransform)
+                    let tempNode = node
+                    tempNode.scale = SCNVector3Make(0.1, 0.1, 0.1)
+                    tempNode.position = fixedNodeYPos(tempNode: tempNode)
+                    node.removeFromParentNode()
+                    arView.scene.rootNode.addChildNode(tempNode)
+                }
+                print("set new pos")
+            }
+            let fishNode = setupFishNode()
+            fishNode?.transform = SCNMatrix4(result.worldTransform)
+            let tempNode = fishNode
+            tempNode?.scale = SCNVector3Make(0.01, 0.01, 0.01)
+            tempNode?.position = fixedNodeYPos(tempNode: tempNode!)
+            if(tempNode != nil) {
+                arView.scene.rootNode.addChildNode(tempNode!)
+            }
+            
+            let tankNode = setupTankNode()
+            tankNode?.transform = SCNMatrix4(result.worldTransform)
+            let tempNode2 = tankNode
+            tempNode2?.position = fixedNodeYPos(tempNode: tempNode2!)
+            tempNode2?.scale = SCNVector3Make(0.1, 0.1, 0.1)
+            if(tempNode2 != nil) {
+                arView.scene.rootNode.addChildNode(tempNode2!)
+            }
         }
     }
 }
