@@ -34,7 +34,7 @@ struct FishTankView: UIViewRepresentable {
     }
     
     func setupNodes() -> SCNNode? {
-        let fishNode = scene.rootNode.childNode(withName: "Armature-001", recursively: true)!
+        let fishNode = scene.rootNode.childNode(withName: "Armature", recursively: true)!
         return fishNode
     }
     

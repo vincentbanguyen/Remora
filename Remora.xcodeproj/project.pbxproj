@@ -18,12 +18,11 @@
 		E19DA01E27C9E57700084D04 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DA01A27C9E48F00084D04 /* Extensions.swift */; };
 		E19DA02127C9ED8C00084D04 /* SCNBezier in Frameworks */ = {isa = PBXBuildFile; productRef = E19DA02027C9ED8C00084D04 /* SCNBezier */; };
 		E19DA02327C9F26200084D04 /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DA02227C9F26200084D04 /* HomeScreenView.swift */; };
-		E19DA02727C9F92B00084D04 /* fishTestBaked.scn in Resources */ = {isa = PBXBuildFile; fileRef = E19DA02627C9F92B00084D04 /* fishTestBaked.scn */; };
 		E19DA02B27CABC8F00084D04 /* FishTankARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DA02A27CABC8F00084D04 /* FishTankARView.swift */; };
 		E19DA02F27CAD37900084D04 /* WaterInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DA02E27CAD37900084D04 /* WaterInputView.swift */; };
 		E19DA03827CAF7EA00084D04 /* RemoraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DA03727CAF7EA00084D04 /* RemoraApp.swift */; };
-		E19DA03D27CAF83C00084D04 /* fish.dae in Resources */ = {isa = PBXBuildFile; fileRef = E19DA03B27CAF83C00084D04 /* fish.dae */; };
-		E19DA03E27CAF83C00084D04 /* Plane.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E19DA03C27CAF83C00084D04 /* Plane.jpg */; };
+		E19DA04427CB2E8200084D04 /* Plane.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E19DA04327CB2E8200084D04 /* Plane.jpg */; };
+		E19DA04627CB2ECF00084D04 /* fish.scn in Resources */ = {isa = PBXBuildFile; fileRef = E19DA04527CB2ECF00084D04 /* fish.scn */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,12 +37,11 @@
 		E19DA01A27C9E48F00084D04 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E19DA01B27C9E53400084D04 /* ViewRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
 		E19DA02227C9F26200084D04 /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
-		E19DA02627C9F92B00084D04 /* fishTestBaked.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = fishTestBaked.scn; sourceTree = "<group>"; };
 		E19DA02A27CABC8F00084D04 /* FishTankARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishTankARView.swift; sourceTree = "<group>"; };
 		E19DA02E27CAD37900084D04 /* WaterInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterInputView.swift; sourceTree = "<group>"; };
 		E19DA03727CAF7EA00084D04 /* RemoraApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RemoraApp.swift; path = Remora/RemoraApp.swift; sourceTree = SOURCE_ROOT; };
-		E19DA03B27CAF83C00084D04 /* fish.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = fish.dae; sourceTree = "<group>"; };
-		E19DA03C27CAF83C00084D04 /* Plane.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Plane.jpg; sourceTree = "<group>"; };
+		E19DA04327CB2E8200084D04 /* Plane.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Plane.jpg; sourceTree = "<group>"; };
+		E19DA04527CB2ECF00084D04 /* fish.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = fish.scn; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,9 +60,8 @@
 			isa = PBXGroup;
 			children = (
 				CAF3ED8227C9CA010078BDFE /* MainScene.scn */,
-				E19DA02627C9F92B00084D04 /* fishTestBaked.scn */,
-				E19DA03B27CAF83C00084D04 /* fish.dae */,
-				E19DA03C27CAF83C00084D04 /* Plane.jpg */,
+				E19DA04527CB2ECF00084D04 /* fish.scn */,
+				E19DA04327CB2E8200084D04 /* Plane.jpg */,
 				CA39517827C9EF9C008EFD4B /* Tank.scn */,
 			);
 			path = sceneAssets;
@@ -177,13 +174,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E19DA03D27CAF83C00084D04 /* fish.dae in Resources */,
-				E19DA03E27CAF83C00084D04 /* Plane.jpg in Resources */,
+				E19DA04427CB2E8200084D04 /* Plane.jpg in Resources */,
 				CA39517927C9EF9C008EFD4B /* Tank.scn in Resources */,
 				E19DA00927C9B2A200084D04 /* Preview Assets.xcassets in Resources */,
-				E19DA02727C9F92B00084D04 /* fishTestBaked.scn in Resources */,
 				E19DA00627C9B2A200084D04 /* Assets.xcassets in Resources */,
 				CAF3ED8327C9CA010078BDFE /* MainScene.scn in Resources */,
+				E19DA04627CB2ECF00084D04 /* fish.scn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

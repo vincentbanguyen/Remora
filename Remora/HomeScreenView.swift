@@ -14,6 +14,7 @@ struct HomeScreenView: View {
     let timeSinceDrank = Date().timeIntervalSinceReferenceDate - UserDefaults.standard.double(forKey: "timeDrank") ?? Date().timeIntervalSinceReferenceDate
     
     @State private var arMode = false
+    @State private var selectedContainer = "flask"
     
     func decreaseWater() {
         if(timeSinceDrank > 3600) {
@@ -28,12 +29,10 @@ struct HomeScreenView: View {
         
         ZStack {
             if arMode == false {
-                if arMode == false {
-                    FishTankView()
-                        .ignoresSafeArea()
-                }
-            } else {
+                FishTankView()
+                    .ignoresSafeArea()
                 
+            } else {
                 Color("HomeScreenBackground")
                     .ignoresSafeArea()
                 
@@ -88,16 +87,65 @@ struct HomeScreenView: View {
             }
             .offset(x: screenWidth / 2 - 50, y: -screenHeight / 2 + 65)
             
-            VStack {
-                Spacer()
-                Button {
-                    showingWaterInputSheet = true
-                } label: {
+            
+                HStack {
+                    ZStack {
                     Rectangle()
-                        .frame(width: 50, height: 20)
-                        .foregroundColor(.black)
+                        
+                        .foregroundColor(.white)
+                        .mask {
+                            Image("flaskmask")
+                                .scaleEffect(0.1)
+                        }
+                        Image("flaskmaskoutline")
+                            .scaleEffect(0.1)
+                            .frame(width: 80, height: 100)
+                    }
+                    .frame(width: 80, height: 100)
+                    .offset(y: -15)
+                    .onTapGesture {
+                        selectedContainer = "flaskmask"
+                        showingWaterInputSheet = true
+                    }
+                    
+                    ZStack {
+                    Rectangle()
+                        .foregroundColor(.white)
+                        .mask {
+                            Image("cupmask")
+                                .scaleEffect(0.1)
+                        }
+                        Image("cupmaskoutline")
+                            .scaleEffect(0.1)
+                            .frame(width: 80, height: 100)
+                    }
+                    .frame(width: 80, height: 100)
+                    .onTapGesture {
+                        selectedContainer = "cupmask"
+                        showingWaterInputSheet = true
+                    }
+                    
+                    ZStack {
+                        Rectangle()
+                            .foregroundColor(.white)
+                            .mask {
+                                Image("mugmask")
+                                    .scaleEffect(0.1)
+                            }
+                        Image("mugmaskoutline")
+                            .scaleEffect(0.1)
+                            .frame(width: 80, height: 100)
+                    }
+                    .frame(width: 80, height: 100)
+                    .offset(y: 8)
                 }
-            }
+                .offset(y: screenHeight * 0.4)
+                .frame(width: screenWidth, height: 80)
+                .onTapGesture {
+                    selectedContainer = "mugmask"
+                    showingWaterInputSheet = true
+                }
+            
         }
         .onAppear {
             
@@ -129,7 +177,9 @@ struct HomeScreenView: View {
             }
         }
         .transition(.backslide)
-        .sheet(isPresented: $showingWaterInputSheet, content: WaterInputView.init)
+        .sheet(isPresented: $showingWaterInputSheet) {
+            WaterInputView(selectedContainer: selectedContainer)
+        }
     }
 }
 

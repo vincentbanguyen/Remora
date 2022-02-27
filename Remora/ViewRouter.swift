@@ -8,5 +8,4 @@ enum Screen {
     case onboardingName
     case onboardingWeight
     case homeScreen
-    case waterInput
 }

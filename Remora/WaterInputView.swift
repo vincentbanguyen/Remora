@@ -21,6 +21,8 @@ struct WaterInputView: View {
     @State private var previousLocationLevel = CGFloat(1000)
     @State private var isDrinking = true
     
+    let selectedContainer: String
+    
     var body: some View {
         ZStack {
             
@@ -43,23 +45,48 @@ struct WaterInputView: View {
                 .position(x: screenWidth / 2, y: topLevel - 50)
             
             
-            RoundedRectangle(cornerRadius: 10) // Cup
-                .frame(width: 150, height: 400)
-                .foregroundColor(Color(hex: "ECECEC"))
+            
+            Rectangle()
+                .frame(width: screenWidth, height: screenHeight * 0.7)
+                .foregroundColor(.white)
+                .mask {
+                    Image(selectedContainer)
+                        .resizable()
+                        
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 150, height: 400)
+                }
                 .position(x: screenWidth / 2, y: bottomLevel - 200)
+                
+            
+            
             
             
             RoundedRectangle(cornerRadius: 10) // Water
-                .foregroundColor(Color(hex: "CBF4FF"))
-                .frame(width: 150, height: 800)
+                .foregroundColor(Color(hex: "00B3DB"))
+                .frame(width: screenWidth, height: 800)
                 .position(x: screenWidth / 2,y: CGFloat(currentWaterLevel + 400))
+                
+                .mask {
+                    Image(selectedContainer)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 150, height: 400)
+                        .position(x: screenWidth / 2, y: bottomLevel - 200)
+                }
+            
+            Image("\(selectedContainer)outline")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 150, height: 400)
+                .position(x: screenWidth / 2, y: bottomLevel - 200)
+                .disabled(true)
                 .gesture(
                     dragLevel
                 )
-                .mask {
-                    RoundedRectangle(cornerRadius: 10) // Cup
-                        .frame(width: 150, height: 400)
-                        .position(x: screenWidth / 2, y: bottomLevel - 200)
+                .scaleEffect(selectedContainer == "flaskmask" ? 1.04: 1)
+                .onAppear {
+                    print(selectedContainer)
                 }
             
             VStack {
@@ -100,7 +127,7 @@ struct WaterInputView: View {
                     }
                 }
             }
-            .padding(30)
+            .padding(10)
         }
         .transition(.slide)
     }
@@ -125,6 +152,6 @@ struct WaterInputView: View {
 
 struct WaterInputView_Previews: PreviewProvider {
     static var previews: some View {
-        WaterInputView()
+        WaterInputView(selectedContainer: "flask_mask")
     }
 }
