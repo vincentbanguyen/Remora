@@ -11,16 +11,24 @@ struct HomeScreenView: View {
     @State private var waterLeft = UserDefaults.standard.integer(forKey: "waterLeft")
     let timeSinceDrank = Date().timeIntervalSinceReferenceDate - UserDefaults.standard.double(forKey: "timeDrank")
     
+    let calendar = Calendar.current
+    let currentDate = Date(timeInterval: TimeInterval(TimeZone.current.secondsFromGMT(for: Date())), since: Date())
+    let now = Date()
+    
     func decreaseWater() {
-        if(timeSinceDrank > 3600) {
-            waterLeft = waterLeft - Int(round(timeSinceDrank/3600))
-            if waterLeft < 0 {
-                waterLeft = 0
-            }
-            UserDefaults.standard.set(waterLeft, forKey: "waterLeft")
-            print("New water level saved: " + String(waterLeft))
+        waterLeft = waterLeft - Int(round(timeSinceDrank/3600))
+        if waterLeft < 0 {
+            waterLeft = 0
         }
+        
+        UserDefaults.standard.set(waterLeft, forKey: "waterLeft")
+        print("New water level saved: " + String(waterLeft))
+        print(getMinutesSinceMidnight())
     }
+    
+    func getMinutesSinceMidnight() -> Int {
+            return (calendar.component(.hour, from: now) * 60 + calendar.component(.minute, from: now))
+     }
     
     func recommendedIntake() -> Int {
         return Int(round(Double(UserDefaults.standard.integer(forKey: "weight")) * 0.75))
@@ -72,6 +80,14 @@ struct HomeScreenView: View {
                     .font(.system(size: 40))
             }
             .offset(x: screenWidth / 2 - 50, y: -screenHeight / 2 + 50)
+            
+            Button {
+                viewRouter.currentScreen = .onboardingName
+            } label: {
+                Image(systemName: "cube.transparent")
+                    .font(.system(size: 40))
+            }
+            .offset(x: screenWidth / 2 - 50, y: -screenHeight / 2 + 200)
             
             VStack {
                 Spacer()
