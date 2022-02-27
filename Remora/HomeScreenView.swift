@@ -57,8 +57,31 @@ struct HomeScreenView: View {
             }
             
             // Top Message
-            VStack(alignment: .leading) {
-                VStack(alignment: .leading) {
+                
+            VStack(alignment: .leading, spacing: 10) {
+                    // Tank View
+                        
+                        HStack(spacing: screenWidth * 0.6) {
+                            
+                            Button {
+                                viewRouter.currentScreen = .onboardingName
+                            } label: {
+                                Image(systemName: "gearshape.fill")
+                                    .font(.system(size: 40))
+                            }
+                            Button {
+                                arMode.toggle()
+                                fishTankOpacity = 1
+                            } label: {
+                            if arMode == false {
+                                Image(systemName: "cube.transparent")
+                                    .font(.system(size: 40))
+                            } else {
+                                Image(systemName: "cube.fill")
+                                    .font(.system(size: 40))
+                            }
+                        }
+                    }
                     Text("\(phrase) \(name)!")
                         .font(.system(size: 28, weight: .bold, design: .rounded))
                         .foregroundColor(Color(hex: "080809"))
@@ -77,36 +100,13 @@ struct HomeScreenView: View {
                             .font(.system(size: 28, weight: .bold, design: .rounded))
                             .foregroundColor(Color(hex: "080809"))
                     }
+                    Spacer()
                 }
                 .frame(width: 350, height: 80, alignment: .leading)
-                Spacer()
-            }
-            .padding(.top, 60)
+                .padding(.top, 80)
             // TOP message
             
-            // Tank View
-                
-                HStack(spacing: screenWidth * 0.6) {
-                    
-                    Button {
-                        viewRouter.currentScreen = .onboardingName
-                    } label: {
-                        Image(systemName: "gearshape.fill")
-                            .font(.system(size: 40))
-                    }
-                    Button {
-                        arMode.toggle()
-                        fishTankOpacity = 1
-                    } label: {
-                    if arMode == false {
-                        Image(systemName: "cube.transparent")
-                            .font(.system(size: 40))
-                    } else {
-                        Image(systemName: "cube.fill")
-                            .font(.system(size: 40))
-                    }
-                }
-            }
+            
             .offset(y: -screenHeight / 2 + 65)
             
             // Settings Button
@@ -183,7 +183,7 @@ struct HomeScreenView: View {
             setUpNotif()
         }
         .transition(.backslide)
-        .sheet(isPresented: $showingWaterInputSheet) {
+        .fullScreenCover(isPresented: $showingWaterInputSheet) {
             WaterInputView(selectedContainer: $selectedContainer)
         }
     }
