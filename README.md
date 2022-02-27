@@ -1,6 +1,7 @@
 # Remora
 <img src="https://github.com/vincentbanguyen/Remora/blob/main/Remora/Assets.xcassets/AppIcon.appiconset/RemoraAppIcon-1024.png?raw=true" width="170">
 Remora was created during HackIllinois 2022 with a 36-hour constraint. Contributors: Vincent Nguyen, Dhruv Chowdhary, Matt Paul, and Randy Thai.
+
 ## Inspiration
 Constantly remembering to drink water can be hard, especially for us students when we are too busy with schoolwork or mindlessly scrolling on TikTok. Many people just don’t feel motivated to drink water since it seems to be the least of their problems with all the homework assignments or upcoming midterms. Even if we remember to drink some water, most people don’t drink nearly enough! Dehydration leads to many health problems such as headaches, dizziness, and overall tiredness. My mom used to caringly nag me to drink water every day, but being away from home forced me to make an app as a solution.
 
