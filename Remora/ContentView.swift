@@ -6,6 +6,7 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
+            
             switch viewRouter.currentScreen {
                 
             case Screen.onboardingName:
@@ -19,12 +20,6 @@ struct ContentView: View {
                     .onAppear {
                         UserDefaults.standard.set("homeScreen", forKey: "screenState")
                     }
-            case Screen.arTankScreen:
-                ArTankView()
-                
-            case Screen.waterInput:
-                WaterInputView()
-                
             }
         }
         .environmentObject(viewRouter)

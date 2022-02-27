@@ -8,11 +8,13 @@ struct FishTankView: UIViewRepresentable {
     var view = SCNView()
     
     func makeUIView(context: Context) -> SCNView {
+        
         let cameraNode = scene.rootNode.childNode(withName: "camera", recursively: true)!
         
         let fishNode = setupNodes()!
         setUpCamera()
         view.scene = scene
+        
         let panGesture = UIPanGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handlePan(_:)))
         panGesture.delegate = context.coordinator
         view.addGestureRecognizer(panGesture)
@@ -32,7 +34,7 @@ struct FishTankView: UIViewRepresentable {
     }
     
     func setupNodes() -> SCNNode? {
-        let fishNode = scene.rootNode.childNode(withName: "Armature-001", recursively: true)!
+        let fishNode = scene.rootNode.childNode(withName: "Armature", recursively: true)!
         return fishNode
     }
     

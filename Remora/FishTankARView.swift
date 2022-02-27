@@ -45,7 +45,7 @@ struct FishTankARView: UIViewRepresentable {
         }
         
         func setupFishNode() -> SCNNode? {
-            guard let fishNode = scene.rootNode.childNode(withName: "Armature-001", recursively: true)
+            guard let fishNode = scene.rootNode.childNode(withName: "Armature", recursively: true)
             else {return nil}
             return fishNode
         }
@@ -134,4 +134,5 @@ struct ARkitView_Previews : PreviewProvider {
         FishTankARView()
     }
 }
+
 
