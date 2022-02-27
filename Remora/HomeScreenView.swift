@@ -42,6 +42,10 @@ struct HomeScreenView: View {
                 Color("HomeScreenBackground")
                     .ignoresSafeArea()
                 
+                VStack(spacing: -20) {
+                    Text("Tap a surface to place the fish tank")
+                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                        .foregroundColor(Color(hex: "080809"))
                 FishTankARView()
                     .ignoresSafeArea()
                     .frame(width: screenWidth * 0.88, height: screenHeight * 0.55)
@@ -49,6 +53,7 @@ struct HomeScreenView: View {
                     .padding(.top, 50)
                     .offset(y: -20)
                 
+                }
             }
             
             // Top Message
