@@ -22,6 +22,10 @@ struct HomeScreenView: View {
         }
     }
     
+    func recommendedIntake() -> Int {
+        return Int(round(Double(UserDefaults.standard.integer(forKey: "weight")) * 0.75))
+    }
+    
     var body: some View {
         ZStack {
             

@@ -109,7 +109,7 @@ struct OnboardingWeightView: View {
                     Button {
                         withAnimation {
                             if let weight = Int(weight) {
-                                if weight > 0 {
+                                if (weight > 0 && weight < 1400) {
                                     viewRouter.currentScreen = .homeScreen
                                     UserDefaults.standard.set(weight, forKey: "weight")
                                     UserDefaults.standard.set(600, forKey: "savedWaterLevel")
