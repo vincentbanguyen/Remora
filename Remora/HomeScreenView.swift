@@ -5,6 +5,7 @@ struct HomeScreenView: View {
     @State private var phrase = "Good job"
     let name = UserDefaults.standard.string(forKey: "name") ?? "Bob"
     let waterDrank = 2
+    @State private var showingWaterInputSheet = false
     
     @EnvironmentObject var viewRouter: ViewRouter
     @State private var waterLeft = UserDefaults.standard.integer(forKey: "waterLeft") ?? 0
@@ -20,15 +21,13 @@ struct HomeScreenView: View {
     }
     
     var body: some View {
-        
-        
         ZStack {
             
             Color(hex: "F2F9FF")
                 .ignoresSafeArea()
             
             // Top Message
-            VStack(alignment: .leading){
+            VStack(alignment: .leading) {
                 VStack(alignment: .leading) {
                     Text("\(phrase) \(name)!")
                         .font(.system(size: 28, weight: .bold, design: .rounded))
@@ -66,12 +65,23 @@ struct HomeScreenView: View {
                 Image(systemName: "cube.transparent")
                     .font(.system(size: 40))
             }
-            .offset(x: 140, y: -360)
+            .offset(x: screenWidth / 2 - 50, y: -screenHeight / 2 + 50)
             
+            VStack {
+                Spacer()
+                Button {
+                    showingWaterInputSheet = true
+                } label: {
+                    Rectangle()
+                        .frame(width: 50, height: 20)
+                        .foregroundColor(.black)
+                }
+
+            }
         }
-        
-        }.onAppear{decreaseWater()}
+        .onAppear{ decreaseWater() }
         .transition(.backslide)
+        .sheet(isPresented: $showingWaterInputSheet, content: WaterInputView.init)
     }
 }
 

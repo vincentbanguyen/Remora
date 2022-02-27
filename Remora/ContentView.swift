@@ -21,6 +21,10 @@ struct ContentView: View {
                     }
             case Screen.arTankScreen:
                 ArTankView()
+                
+            case Screen.waterInput:
+                WaterInputView()
+                
             }
         }
         .environmentObject(viewRouter)

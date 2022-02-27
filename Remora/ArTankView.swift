@@ -14,9 +14,9 @@ struct ArTankView: View {
                 viewRouter.currentScreen = .homeScreen
             } label: {
                 Image(systemName: "cube.fill")
-                    .font(.system(size: 50))
+                    .font(.system(size: 40))
             }
-            .offset(x: 130, y: -360)
+            .offset(x: screenWidth / 2 - 50, y: -screenHeight / 2 + 50)
             
         }
     }

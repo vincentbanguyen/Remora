@@ -9,4 +9,5 @@ enum Screen {
     case onboardingWeight
     case homeScreen
     case arTankScreen
+    case waterInput
 }

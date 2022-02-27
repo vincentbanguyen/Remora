@@ -112,6 +112,7 @@ struct OnboardingWeightView: View {
                                 if weight > 0 {
                                     viewRouter.currentScreen = .homeScreen
                                     UserDefaults.standard.set(weight, forKey: "weight")
+                                    UserDefaults.standard.set(600, forKey: "savedWaterLevel")
                                 }
                             }
                         }

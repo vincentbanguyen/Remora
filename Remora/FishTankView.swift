@@ -10,11 +10,6 @@ struct FishTankView: UIViewRepresentable {
     func makeUIView(context: Context) -> SCNView {
         let cameraNode = scene.rootNode.childNode(withName: "camera", recursively: true)!
         
-        print("----start----")
-        print(cameraNode.position.x)
-        print(cameraNode.position.y)
-        print(cameraNode.position.z)
-        
         let fishNode = setupNodes()!
         setUpCamera()
         view.scene = scene
