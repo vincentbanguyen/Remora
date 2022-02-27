@@ -9,23 +9,18 @@ struct WaterInputView: View {
     
     @State private var currentWaterLevel = UserDefaults.standard.integer(forKey: "savedWaterLevel")
     
-    @State private var ozDrank = { (currentWaterLevel: Int, oldWaterLevel: Int, isDrinking: Bool) -> Int in
-        let ozDrank = (currentWaterLevel - oldWaterLevel)
-       // print(ozDrank)
-        if ozDrank > 0 && isDrinking == true {
-            return ozDrank
-        } else {
-            return 0
-        }
-    }
+    @State private var ozDrank = 0
     @State private var previousLocationLevel = CGFloat(1000)
     @State private var isDrinking = true
     
+    @State private var containerMaxOz = 0
     @Binding var selectedContainer: String
+    @State private var currentOz = 0
     
+    @Binding var waterDrank: Int
     var body: some View {
+        
         ZStack {
-            
             Color(hex: "DDEFFF")
                 .ignoresSafeArea()
             
@@ -39,7 +34,7 @@ struct WaterInputView: View {
                 
             }
             
-            Text("+\(ozDrank(currentWaterLevel, oldWaterLevel,isDrinking)) oz")
+            Text("+\(ozDrank) oz")
                 .font(.system(size: 36, weight: .bold, design: .rounded))
                 .foregroundColor(Color(hex: "00B3DB"))
                 .position(x: screenWidth / 2, y: topLevel - 50)
@@ -52,21 +47,17 @@ struct WaterInputView: View {
                 .mask {
                     Image(selectedContainer)
                         .resizable()
-                        
+                    
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 150, height: 400)
                 }
                 .position(x: screenWidth / 2, y: bottomLevel - 200)
-                
-            
-            
-            
             
             RoundedRectangle(cornerRadius: 10) // Water
                 .foregroundColor(Color(hex: "00B3DB"))
                 .frame(width: screenWidth, height: 800)
                 .position(x: screenWidth / 2,y: CGFloat(currentWaterLevel + 400))
-                
+            
                 .mask {
                     Image(selectedContainer)
                         .resizable()
@@ -89,30 +80,65 @@ struct WaterInputView: View {
                     print(selectedContainer)
                 }
             
-            VStack {
-                
+            HStack {
                 Spacer()
                 
                 VStack {
                     Toggle("Hi", isOn: $isDrinking).labelsHidden()
                     Text(isDrinking ? "Drinking" : "Refilling")
                         .font(.system(size: 12, weight: .bold, design: .rounded))
-                        .foregroundColor(Color(hex: "00B3DB"))
+                        .foregroundColor(.black)
                 }
                 .onChange(of: isDrinking) { isDrinking in
                     if isDrinking == true {
                         oldWaterLevel = currentWaterLevel
                         UserDefaults.standard.set(oldWaterLevel, forKey: "saved")
                     } else {
-                            currentWaterLevel = 200
+                        currentWaterLevel = 200
                     }
                 }
-                .offset(y: -5)
+                .offset(y: -230)
+            }
+            .padding(30)
+            
+            VStack(spacing: 20) {
+                
+                Spacer()
+                HStack {
+                    
+                    Button {
+                        containerMaxOz -= 1
+                        UserDefaults.standard.setValue(containerMaxOz, forKey: selectedContainer)
+                    } label: {
+                        Image(systemName: "minus")
+                            .font(.system(size: 30))
+                            .foregroundColor(.black)
+                    }
+                    
+                    Text(" \(currentOz)/\(containerMaxOz) oz")
+                        .font(.system(size: 28, weight: .semibold, design: .rounded))
+                        .foregroundColor(.black)
+                    
+                    Button {
+                        containerMaxOz += 1
+                        UserDefaults.standard.setValue(containerMaxOz, forKey: selectedContainer)
+                    } label: {
+                        Image(systemName: "plus")
+                            .font(.system(size: 30))
+                            .foregroundColor(.black)
+                    }
+                }
+                .offset(y: -10)
                 
                 Button {
                     withAnimation {
-                        presentationMode.wrappedValue.dismiss()
                         UserDefaults.standard.set(currentWaterLevel, forKey: "savedWaterLevel")
+                        
+                        let savedOzDrank = UserDefaults.standard.integer(forKey: "ozDrank")
+                        waterDrank = savedOzDrank + ozDrank
+                        UserDefaults.standard.set(ozDrank + savedOzDrank, forKey: "ozDrank")
+                        presentationMode.wrappedValue.dismiss()
+                        
                     }
                 } label: {
                     ZStack {
@@ -130,6 +156,9 @@ struct WaterInputView: View {
             .padding(10)
         }
         .transition(.slide)
+        .onAppear {
+            containerMaxOz = UserDefaults.standard.integer(forKey: selectedContainer)
+        }
     }
     
     var dragLevel: some Gesture {
@@ -144,6 +173,18 @@ struct WaterInputView: View {
                     } else {
                         currentWaterLevel = Int(value.location.y)
                     }
+                   
+                    
+                    currentOz = Int(Double(400 - Int(currentWaterLevel - 200)) / 400.0 * Double(containerMaxOz))
+                    
+                    let tempOzDrank = Int(Double(currentWaterLevel - oldWaterLevel) / 400.0 * Double(containerMaxOz))
+                            
+                    // print(ozDrank)
+                    if tempOzDrank > 0 && isDrinking == true {
+                        ozDrank = Int(Double(currentWaterLevel - oldWaterLevel) / 400.0 * Double(containerMaxOz)) + 1
+                    } else {
+                        ozDrank = 0
+                    }
                 }
                 previousLocationLevel = value.location.y
             }
@@ -151,8 +192,9 @@ struct WaterInputView: View {
 }
 
 struct WaterInputView_Previews: PreviewProvider {
-    @State static var selectedContainer = "flask_mask"
+    @State static var selectedContainer = "flaskmask"
+    @State static var waterDrank = 0
     static var previews: some View {
-        WaterInputView(selectedContainer: $selectedContainer)
+        WaterInputView(selectedContainer: $selectedContainer, waterDrank: $waterDrank)
     }
 }

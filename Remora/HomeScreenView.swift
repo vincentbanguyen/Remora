@@ -15,7 +15,7 @@ struct HomeScreenView: View {
     let name = UserDefaults.standard.string(forKey: "name") ?? "Bob"
     let timeSinceDrank = Date().timeIntervalSinceReferenceDate - UserDefaults.standard.double(forKey: "timeDrank")
     
-    let waterDrank = 2
+    @State private var waterDrank = 0
     
     let calendar = Calendar.current
     let currentDate = Date(timeInterval: TimeInterval(TimeZone.current.secondsFromGMT(for: Date())), since: Date())
@@ -42,6 +42,10 @@ struct HomeScreenView: View {
                 Color("HomeScreenBackground")
                     .ignoresSafeArea()
                 
+                VStack(spacing: -20) {
+                    Text("Tap a surface to place the fish tank")
+                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                        .foregroundColor(Color(hex: "080809"))
                 FishTankARView()
                     .ignoresSafeArea()
                     .frame(width: screenWidth * 0.88, height: screenHeight * 0.55)
@@ -49,11 +53,35 @@ struct HomeScreenView: View {
                     .padding(.top, 50)
                     .offset(y: -20)
                 
+                }
             }
             
             // Top Message
-            VStack(alignment: .leading) {
-                VStack(alignment: .leading) {
+                
+            VStack(alignment: .leading, spacing: 10) {
+                    // Tank View
+                        
+                        HStack(spacing: screenWidth * 0.6) {
+                            
+                            Button {
+                                viewRouter.currentScreen = .onboardingName
+                            } label: {
+                                Image(systemName: "gearshape.fill")
+                                    .font(.system(size: 40))
+                            }
+                            Button {
+                                arMode.toggle()
+                                fishTankOpacity = 1
+                            } label: {
+                            if arMode == false {
+                                Image(systemName: "cube.transparent")
+                                    .font(.system(size: 40))
+                            } else {
+                                Image(systemName: "cube.fill")
+                                    .font(.system(size: 40))
+                            }
+                        }
+                    }
                     Text("\(phrase) \(name)!")
                         .font(.system(size: 28, weight: .bold, design: .rounded))
                         .foregroundColor(Color(hex: "080809"))
@@ -72,36 +100,13 @@ struct HomeScreenView: View {
                             .font(.system(size: 28, weight: .bold, design: .rounded))
                             .foregroundColor(Color(hex: "080809"))
                     }
+                    Spacer()
                 }
                 .frame(width: 350, height: 80, alignment: .leading)
-                Spacer()
-            }
-            .padding(.top, 50)
+                .padding(.top, 80)
             // TOP message
             
-            // Tank View
-                
-                HStack(spacing: screenWidth * 0.6) {
-                    
-                    Button {
-                        viewRouter.currentScreen = .onboardingName
-                    } label: {
-                        Image(systemName: "gearshape.fill")
-                            .font(.system(size: 40))
-                    }
-                    Button {
-                        arMode.toggle()
-                        fishTankOpacity = 1
-                    } label: {
-                    if arMode == false {
-                        Image(systemName: "cube.transparent")
-                            .font(.system(size: 40))
-                    } else {
-                        Image(systemName: "cube.fill")
-                            .font(.system(size: 40))
-                    }
-                }
-            }
+            
             .offset(y: -screenHeight / 2 + 65)
             
             // Settings Button
@@ -176,10 +181,11 @@ struct HomeScreenView: View {
         .onAppear {
             decreaseWater()
             setUpNotif()
+            waterDrank = UserDefaults.standard.integer(forKey: "ozDrank")
         }
         .transition(.backslide)
-        .sheet(isPresented: $showingWaterInputSheet) {
-            WaterInputView(selectedContainer: $selectedContainer)
+        .fullScreenCover(isPresented: $showingWaterInputSheet) {
+            WaterInputView(selectedContainer: $selectedContainer, waterDrank: $waterDrank)
         }
     }
     
@@ -193,6 +199,7 @@ struct HomeScreenView: View {
         }
         
         if UserDefaults.standard.string(forKey: "notif") != "notifSet" {
+            print("setting up notif")
             let content = UNMutableNotificationContent()
             content.title = "Remora Reminder"
             content.subtitle = "Hey \(name), don't forget to drink water 💧"
