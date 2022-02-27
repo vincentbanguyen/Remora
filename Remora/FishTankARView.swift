@@ -87,7 +87,7 @@ struct FishTankARView: UIViewRepresentable {
             }
             
             arView.scene.rootNode.enumerateChildNodes { (node, stop) in
-                if (node.name == "Armature-001") {
+                if (node.name == "Armature") {
                     node.transform = SCNMatrix4(result.worldTransform)
                     let tempNode = node
                     tempNode.scale = SCNVector3Make(0.01, 0.01, 0.01)

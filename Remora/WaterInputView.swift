@@ -21,7 +21,7 @@ struct WaterInputView: View {
     @State private var previousLocationLevel = CGFloat(1000)
     @State private var isDrinking = true
     
-    let selectedContainer: String
+    @Binding var selectedContainer: String
     
     var body: some View {
         ZStack {
@@ -151,7 +151,8 @@ struct WaterInputView: View {
 }
 
 struct WaterInputView_Previews: PreviewProvider {
+    @State static var selectedContainer = "flask_mask"
     static var previews: some View {
-        WaterInputView(selectedContainer: "flask_mask")
+        WaterInputView(selectedContainer: $selectedContainer)
     }
 }
