@@ -63,9 +63,9 @@ struct FishTankARView: UIViewRepresentable {
         }
         
         func setupBoxNode() -> SCNNode? {
-            guard let tankNode = scene.rootNode.childNode(withName: "Box", recursively: true)
+            guard let boxNode = scene.rootNode.childNode(withName: "Box", recursively: true)
             else {return nil}
-            return tankNode
+            return boxNode
         }
         
         func fixedNodeYPos(tempNode: SCNNode) -> SCNVector3 {
@@ -73,11 +73,18 @@ struct FishTankARView: UIViewRepresentable {
         }
         
         func setWaterLevel(waterLevel: Int) -> SCNVector3 {
+            print(UserDefaults.standard.integer(forKey: "waterLeft"))
+            print(waterLevel)
             if waterLevel <= 0 {
-                return SCNVector3Make(0.06, 0, 0.06)
+                return SCNVector3(0.06, 0, 0.06)
             }
             print("water level: " + String(waterLevel))
-            return SCNVector3Make(0.06, 0.06 - Float(waterLevel/100), 0.06)
+            var difference = UserDefaults.standard.integer(forKey: "recommendedIntake") - waterLevel
+            if difference <= 0 {
+                difference = 0
+            }
+            print(difference)
+            return SCNVector3(0.06, 0.06 - Float(difference), 0.06)
         }
         
         func moveFish(node: SCNNode) {
@@ -166,7 +173,7 @@ struct FishTankARView: UIViewRepresentable {
             tempNode2?.position = fixedNodeYPos(tempNode: tempNode2!)
             tempNode2?.scale = SCNVector3Make(0.00001, 0.00001, 0.00001)
             if(tempNode2 != nil) {
-                print(tempNode2?.scale)
+          //      print(tempNode2?.scale)
            //     arView.scene.rootNode.addChildNode(tempNode2!)
             }
             
@@ -177,7 +184,7 @@ struct FishTankARView: UIViewRepresentable {
             tempNode3?.scale = SCNVector3Make(0.06, 0.06, 0.06)
             tempNode3?.opacity = 0.5
             if(tempNode3 != nil) {
-         //       arView.scene.rootNode.addChildNode(tempNode3!)
+                arView.scene.rootNode.addChildNode(tempNode3!)
             }
             
             let boxNode = setupBoxNode()

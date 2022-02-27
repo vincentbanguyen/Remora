@@ -218,10 +218,15 @@ struct HomeScreenView: View {
     }
     
     func decreaseWater() {
-        waterLeft = waterLeft - Int(round(timeSinceDrank/3600))
+        waterLeft = UserDefaults.standard.integer(forKey: "waterLeft") - Int(round((timeSinceDrank/3600)*Double((recommendedIntake()/24))))
+        print(timeSinceDrank)
+        print(round((timeSinceDrank/3600)*Double((recommendedIntake()/24))))
+        print(Date().timeIntervalSinceReferenceDate)
+        print(UserDefaults.standard.double(forKey: "timeDrank"))
         if waterLeft < 0 {
             waterLeft = 0
         }
+        UserDefaults.standard.set(Date().timeIntervalSinceReferenceDate, forKey: "timeDrank")
         UserDefaults.standard.set(waterLeft, forKey: "waterLeft")
         print("New water level saved: " + String(waterLeft))
         print(getMinutesSinceMidnight())
@@ -232,6 +237,7 @@ struct HomeScreenView: View {
     }
     
     func recommendedIntake() -> Int {
+        UserDefaults.standard.set(Int(round(Double(UserDefaults.standard.integer(forKey: "weight")) * 0.75)), forKey: "recommendedIntake")
         return Int(round(Double(UserDefaults.standard.integer(forKey: "weight")) * 0.75))
     }
 }

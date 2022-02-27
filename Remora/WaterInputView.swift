@@ -137,6 +137,8 @@ struct WaterInputView: View {
                         let savedOzDrank = UserDefaults.standard.integer(forKey: "ozDrank")
                         waterDrank = savedOzDrank + ozDrank
                         UserDefaults.standard.set(ozDrank + savedOzDrank, forKey: "ozDrank")
+                        print("set water left: " + String(ozDrank + UserDefaults.standard.integer(forKey: "waterLeft")))
+                              UserDefaults.standard.set(ozDrank + UserDefaults.standard.integer(forKey: "waterLeft"), forKey: "waterLeft")
                         presentationMode.wrappedValue.dismiss()
                         
                     }
