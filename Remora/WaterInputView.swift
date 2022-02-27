@@ -24,7 +24,7 @@ struct WaterInputView: View {
     var body: some View {
         ZStack {
             
-            Color(hex: "F2F9FF")
+            Color(hex: "DDEFFF")
                 .ignoresSafeArea()
             
             VStack(alignment: .leading) {
