@@ -9,7 +9,7 @@ struct RemoraApp: App {
             if loadingDone == false {
             LoadingView()
                 .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                         loadingDone = true
                     }
                 }
