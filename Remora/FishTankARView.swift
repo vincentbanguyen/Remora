@@ -50,6 +50,10 @@ struct FishTankARView: UIViewRepresentable {
             return fishNode
         }
         
+        func fixedNodeYPos(tempNode: SCNNode) -> SCNVector3 {
+            return SCNVector3Make(tempNode.position.x, tempNode.position.y + 0.05, tempNode.position.z)
+        }
+        
         func setupTankNode() -> SCNNode? {
             guard let tankNode = scene.rootNode.childNode(withName: "tank", recursively: true)
             else {return nil}
@@ -74,6 +78,7 @@ struct FishTankARView: UIViewRepresentable {
                     node.transform = SCNMatrix4(result.worldTransform)
                     let tempNode = node
                     tempNode.scale = SCNVector3Make(0.01, 0.01, 0.01)
+                    tempNode.position = fixedNodeYPos(tempNode: tempNode)
                     node.removeFromParentNode()
                     arView.scene.rootNode.addChildNode(tempNode)
                 }
@@ -81,14 +86,17 @@ struct FishTankARView: UIViewRepresentable {
                     node.transform = SCNMatrix4(result.worldTransform)
                     let tempNode = node
                     tempNode.scale = SCNVector3Make(0.1, 0.1, 0.1)
+                    tempNode.position = fixedNodeYPos(tempNode: tempNode)
                     node.removeFromParentNode()
                     arView.scene.rootNode.addChildNode(tempNode)
                 }
+                print("set new pos")
             }
             let fishNode = setupFishNode()
             fishNode?.transform = SCNMatrix4(result.worldTransform)
             let tempNode = fishNode
             tempNode?.scale = SCNVector3Make(0.01, 0.01, 0.01)
+            tempNode?.position = fixedNodeYPos(tempNode: tempNode!)
             if(tempNode != nil) {
                 arView.scene.rootNode.addChildNode(tempNode!)
             }
@@ -96,6 +104,7 @@ struct FishTankARView: UIViewRepresentable {
             let tankNode = setupTankNode()
             tankNode?.transform = SCNMatrix4(result.worldTransform)
             let tempNode2 = tankNode
+            tempNode2?.position = fixedNodeYPos(tempNode: tempNode2!)
             tempNode2?.scale = SCNVector3Make(0.1, 0.1, 0.1)
             if(tempNode2 != nil) {
                 arView.scene.rootNode.addChildNode(tempNode2!)
