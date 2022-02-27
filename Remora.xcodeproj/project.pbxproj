@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CA39517927C9EF9C008EFD4B /* Tank.scn in Resources */ = {isa = PBXBuildFile; fileRef = CA39517827C9EF9C008EFD4B /* Tank.scn */; };
 		CAF3ED8327C9CA010078BDFE /* MainScene.scn in Resources */ = {isa = PBXBuildFile; fileRef = CAF3ED8227C9CA010078BDFE /* MainScene.scn */; };
+		E13BBC1327CB4AA000DEDC99 /* water.scn in Resources */ = {isa = PBXBuildFile; fileRef = E13BBC1227CB4AA000DEDC99 /* water.scn */; };
+		E13BBC1727CB4BB000DEDC99 /* glass.scn in Resources */ = {isa = PBXBuildFile; fileRef = E13BBC1627CB4BB000DEDC99 /* glass.scn */; };
 		E19DA00427C9B2A000084D04 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DA00327C9B2A000084D04 /* ContentView.swift */; };
 		E19DA00627C9B2A200084D04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E19DA00527C9B2A200084D04 /* Assets.xcassets */; };
 		E19DA00927C9B2A200084D04 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E19DA00827C9B2A200084D04 /* Preview Assets.xcassets */; };
@@ -26,8 +27,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CA39517827C9EF9C008EFD4B /* Tank.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Tank.scn; sourceTree = "<group>"; };
 		CAF3ED8227C9CA010078BDFE /* MainScene.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = MainScene.scn; sourceTree = "<group>"; };
+		E13BBC1227CB4AA000DEDC99 /* water.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = water.scn; sourceTree = "<group>"; };
+		E13BBC1627CB4BB000DEDC99 /* glass.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = glass.scn; sourceTree = "<group>"; };
 		E19D9FFE27C9B2A000084D04 /* Remora.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Remora.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E19DA00327C9B2A000084D04 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E19DA00527C9B2A200084D04 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -61,8 +63,9 @@
 			children = (
 				CAF3ED8227C9CA010078BDFE /* MainScene.scn */,
 				E19DA04527CB2ECF00084D04 /* fish.scn */,
+				E13BBC1627CB4BB000DEDC99 /* glass.scn */,
+				E13BBC1227CB4AA000DEDC99 /* water.scn */,
 				E19DA04327CB2E8200084D04 /* Plane.jpg */,
-				CA39517827C9EF9C008EFD4B /* Tank.scn */,
 			);
 			path = sceneAssets;
 			sourceTree = "<group>";
@@ -175,10 +178,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E19DA04427CB2E8200084D04 /* Plane.jpg in Resources */,
-				CA39517927C9EF9C008EFD4B /* Tank.scn in Resources */,
 				E19DA00927C9B2A200084D04 /* Preview Assets.xcassets in Resources */,
 				E19DA00627C9B2A200084D04 /* Assets.xcassets in Resources */,
 				CAF3ED8327C9CA010078BDFE /* MainScene.scn in Resources */,
+				E13BBC1727CB4BB000DEDC99 /* glass.scn in Resources */,
+				E13BBC1327CB4AA000DEDC99 /* water.scn in Resources */,
 				E19DA04627CB2ECF00084D04 /* fish.scn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

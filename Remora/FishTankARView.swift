@@ -96,7 +96,7 @@ struct FishTankARView: UIViewRepresentable {
                     arView.scene.rootNode.addChildNode(tempNode)
                     moveFish(node: tempNode)
                 }
-                if (node.name == "tank") {
+                if (node.name == "Cube") {
                     node.transform = SCNMatrix4(result.worldTransform)
                     let tempNode = node
                     tempNode.scale = SCNVector3Make(0.1, 0.1, 0.1)

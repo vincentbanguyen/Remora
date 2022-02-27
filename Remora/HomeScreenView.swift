@@ -21,12 +21,22 @@ struct HomeScreenView: View {
     let currentDate = Date(timeInterval: TimeInterval(TimeZone.current.secondsFromGMT(for: Date())), since: Date())
     let now = Date()
     
+    @State private var fishTankOpacity = 0
+    
     var body: some View {
         
         ZStack {
             if arMode == false {
+                
+                let _ = DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    fishTankOpacity = 1
+                }
+                Color("HomeScreenBackground")
+                    .ignoresSafeArea()
+                
                 FishTankView()
                     .ignoresSafeArea()
+                    .opacity(Double(fishTankOpacity))
                 
             } else {
                 Color("HomeScreenBackground")
@@ -70,10 +80,6 @@ struct HomeScreenView: View {
             // TOP message
             
             // Tank View
-            
-            Button {
-                arMode.toggle()
-            } label: {
                 
                 HStack(spacing: screenWidth * 0.6) {
                     
@@ -83,6 +89,10 @@ struct HomeScreenView: View {
                         Image(systemName: "gearshape.fill")
                             .font(.system(size: 40))
                     }
+                    Button {
+                        arMode.toggle()
+                        fishTankOpacity = 1
+                    } label: {
                     if arMode == false {
                         Image(systemName: "cube.transparent")
                             .font(.system(size: 40))
