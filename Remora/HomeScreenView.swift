@@ -15,7 +15,7 @@ struct HomeScreenView: View {
     let name = UserDefaults.standard.string(forKey: "name") ?? "Bob"
     let timeSinceDrank = Date().timeIntervalSinceReferenceDate - UserDefaults.standard.double(forKey: "timeDrank")
     
-    let waterDrank = 2
+    @State private var waterDrank = 0
     
     let calendar = Calendar.current
     let currentDate = Date(timeInterval: TimeInterval(TimeZone.current.secondsFromGMT(for: Date())), since: Date())
@@ -181,10 +181,11 @@ struct HomeScreenView: View {
         .onAppear {
             decreaseWater()
             setUpNotif()
+            waterDrank = UserDefaults.standard.integer(forKey: "ozDrank")
         }
         .transition(.backslide)
         .fullScreenCover(isPresented: $showingWaterInputSheet) {
-            WaterInputView(selectedContainer: $selectedContainer)
+            WaterInputView(selectedContainer: $selectedContainer, waterDrank: $waterDrank)
         }
     }
     
