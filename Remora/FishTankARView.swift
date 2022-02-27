@@ -54,6 +54,19 @@ struct FishTankARView: UIViewRepresentable {
             return SCNVector3Make(tempNode.position.x, tempNode.position.y + 0.05, tempNode.position.z)
         }
         
+        func moveFish(node: SCNNode) {
+            let bezPositions = [
+                SCNVector3(node.position.x + 0.03, node.position.y + 0, node.position.z + 0),
+                SCNVector3(node.position.x + 0, node.position.y + 0.02, node.position.z + 0.1),
+                SCNVector3(node.position.x - 0.02, node.position.y - 0.01, node.position.z - 0.01),
+                SCNVector3(node.position.x - 0.03, node.position.y - 0.01, node.position.z - 0.01),
+                SCNVector3(node.position.x - 0.04, node.position.y - 0.02, node.position.z - 0.01),
+                SCNVector3(node.position.x - 0.01, node.position.y - 0.02, node.position.z - 0.01),
+                SCNVector3(node.position.x + 0.03, node.position.y + 0, node.position.z + 0)
+            ]
+            node.runAction(SCNAction.repeatForever(.moveAlong(bezier: bezPositions, duration: 8)))
+        }
+        
         func setupTankNode() -> SCNNode? {
             guard let tankNode = scene.rootNode.childNode(withName: "tank", recursively: true)
             else {return nil}
@@ -81,12 +94,14 @@ struct FishTankARView: UIViewRepresentable {
                     tempNode.position = fixedNodeYPos(tempNode: tempNode)
                     node.removeFromParentNode()
                     arView.scene.rootNode.addChildNode(tempNode)
+                    moveFish(node: tempNode)
                 }
                 if (node.name == "tank") {
                     node.transform = SCNMatrix4(result.worldTransform)
                     let tempNode = node
                     tempNode.scale = SCNVector3Make(0.1, 0.1, 0.1)
                     tempNode.position = fixedNodeYPos(tempNode: tempNode)
+                    print(tempNode.position)
                     node.removeFromParentNode()
                     arView.scene.rootNode.addChildNode(tempNode)
                 }
@@ -99,6 +114,7 @@ struct FishTankARView: UIViewRepresentable {
             tempNode?.position = fixedNodeYPos(tempNode: tempNode!)
             if(tempNode != nil) {
                 arView.scene.rootNode.addChildNode(tempNode!)
+                moveFish(node: tempNode!)
             }
             
             let tankNode = setupTankNode()

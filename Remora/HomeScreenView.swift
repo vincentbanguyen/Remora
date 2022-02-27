@@ -8,8 +8,8 @@ struct HomeScreenView: View {
     @State private var showingWaterInputSheet = false
     
     @EnvironmentObject var viewRouter: ViewRouter
-    @State private var waterLeft = UserDefaults.standard.integer(forKey: "waterLeft") ?? 0
-    let timeSinceDrank = Date().timeIntervalSinceReferenceDate - UserDefaults.standard.double(forKey: "timeDrank") ?? Date().timeIntervalSinceReferenceDate
+    @State private var waterLeft = UserDefaults.standard.integer(forKey: "waterLeft")
+    let timeSinceDrank = Date().timeIntervalSinceReferenceDate - UserDefaults.standard.double(forKey: "timeDrank")
     
     func decreaseWater() {
         if(timeSinceDrank > 3600) {
@@ -17,6 +17,8 @@ struct HomeScreenView: View {
             if waterLeft < 0 {
                 waterLeft = 0
             }
+            UserDefaults.standard.set(waterLeft, forKey: "waterLeft")
+            print("New water level saved: " + String(waterLeft))
         }
     }
     
